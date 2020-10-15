@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.mapper.ReleaseeMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.Releasee" >
+    <id column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="gradeid" property="gradeid" jdbcType="INTEGER" />
+    <result column="reltitle" property="reltitle" jdbcType="VARCHAR" />
+    <result column="relnei" property="relnei" jdbcType="VARCHAR" />
+    <result column="reldate" property="reldate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rid, gradeid, reltitle, relnei, reldate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ReleaseeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from releasee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from releasee
+    where rid = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from releasee
+    where rid = #{rid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.ReleaseeExample" >
+    delete from releasee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.Releasee" >
+    insert into releasee (rid, gradeid, reltitle, 
+      relnei, reldate)
+    values (#{rid,jdbcType=INTEGER}, #{gradeid,jdbcType=INTEGER}, #{reltitle,jdbcType=VARCHAR}, 
+      #{relnei,jdbcType=VARCHAR}, #{reldate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.Releasee" >
+    insert into releasee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="gradeid != null" >
+        gradeid,
+      </if>
+      <if test="reltitle != null" >
+        reltitle,
+      </if>
+      <if test="relnei != null" >
+        relnei,
+      </if>
+      <if test="reldate != null" >
+        reldate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="gradeid != null" >
+        #{gradeid,jdbcType=INTEGER},
+      </if>
+      <if test="reltitle != null" >
+        #{reltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="relnei != null" >
+        #{relnei,jdbcType=VARCHAR},
+      </if>
+      <if test="reldate != null" >
+        #{reldate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.ReleaseeExample" resultType="java.lang.Integer" >
+    select count(*) from releasee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update releasee
+    <set >
+      <if test="record.rid != null" >
+        rid = #{record.rid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradeid != null" >
+        gradeid = #{record.gradeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.reltitle != null" >
+        reltitle = #{record.reltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relnei != null" >
+        relnei = #{record.relnei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reldate != null" >
+        reldate = #{record.reldate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update releasee
+    set rid = #{record.rid,jdbcType=INTEGER},
+      gradeid = #{record.gradeid,jdbcType=INTEGER},
+      reltitle = #{record.reltitle,jdbcType=VARCHAR},
+      relnei = #{record.relnei,jdbcType=VARCHAR},
+      reldate = #{record.reldate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Releasee" >
+    update releasee
+    <set >
+      <if test="gradeid != null" >
+        gradeid = #{gradeid,jdbcType=INTEGER},
+      </if>
+      <if test="reltitle != null" >
+        reltitle = #{reltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="relnei != null" >
+        relnei = #{relnei,jdbcType=VARCHAR},
+      </if>
+      <if test="reldate != null" >
+        reldate = #{reldate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Releasee" >
+    update releasee
+    set gradeid = #{gradeid,jdbcType=INTEGER},
+      reltitle = #{reltitle,jdbcType=VARCHAR},
+      relnei = #{relnei,jdbcType=VARCHAR},
+      reldate = #{reldate,jdbcType=TIMESTAMP}
+    where rid = #{rid,jdbcType=INTEGER}
+  </update>
+</mapper>

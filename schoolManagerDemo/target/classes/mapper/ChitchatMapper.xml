@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.mapper.ChitchatMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.Chitchat" >
+    <id column="chid" property="chid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="haoid" property="haoid" jdbcType="INTEGER" />
+    <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    chid, userid, haoid, beizhu
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ChitchatExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from chitchat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from chitchat
+    where chid = #{chid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from chitchat
+    where chid = #{chid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.ChitchatExample" >
+    delete from chitchat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.Chitchat" >
+    insert into chitchat (chid, userid, haoid, 
+      beizhu)
+    values (#{chid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{haoid,jdbcType=INTEGER}, 
+      #{beizhu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.Chitchat" >
+    insert into chitchat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chid != null" >
+        chid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="haoid != null" >
+        haoid,
+      </if>
+      <if test="beizhu != null" >
+        beizhu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chid != null" >
+        #{chid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="haoid != null" >
+        #{haoid,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.ChitchatExample" resultType="java.lang.Integer" >
+    select count(*) from chitchat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update chitchat
+    <set >
+      <if test="record.chid != null" >
+        chid = #{record.chid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.haoid != null" >
+        haoid = #{record.haoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.beizhu != null" >
+        beizhu = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update chitchat
+    set chid = #{record.chid,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      haoid = #{record.haoid,jdbcType=INTEGER},
+      beizhu = #{record.beizhu,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Chitchat" >
+    update chitchat
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="haoid != null" >
+        haoid = #{haoid,jdbcType=INTEGER},
+      </if>
+      <if test="beizhu != null" >
+        beizhu = #{beizhu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where chid = #{chid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Chitchat" >
+    update chitchat
+    set userid = #{userid,jdbcType=INTEGER},
+      haoid = #{haoid,jdbcType=INTEGER},
+      beizhu = #{beizhu,jdbcType=VARCHAR}
+    where chid = #{chid,jdbcType=INTEGER}
+  </update>
+</mapper>

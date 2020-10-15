@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.mapper.WorksMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.Works" >
+    <id column="wid" property="wid" jdbcType="INTEGER" />
+    <result column="gradeid" property="gradeid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="relid" property="relid" jdbcType="INTEGER" />
+    <result column="wortitle" property="wortitle" jdbcType="VARCHAR" />
+    <result column="wornei" property="wornei" jdbcType="VARCHAR" />
+    <result column="wordate" property="wordate" jdbcType="TIMESTAMP" />
+    <result column="isverify" property="isverify" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    wid, gradeid, userid, relid, wortitle, wornei, wordate, isverify
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.WorksExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from works
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from works
+    where wid = #{wid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from works
+    where wid = #{wid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.WorksExample" >
+    delete from works
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.Works" >
+    insert into works (wid, gradeid, userid, 
+      relid, wortitle, wornei, 
+      wordate, isverify)
+    values (#{wid,jdbcType=INTEGER}, #{gradeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{relid,jdbcType=INTEGER}, #{wortitle,jdbcType=VARCHAR}, #{wornei,jdbcType=VARCHAR}, 
+      #{wordate,jdbcType=TIMESTAMP}, #{isverify,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.Works" >
+    insert into works
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        wid,
+      </if>
+      <if test="gradeid != null" >
+        gradeid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="relid != null" >
+        relid,
+      </if>
+      <if test="wortitle != null" >
+        wortitle,
+      </if>
+      <if test="wornei != null" >
+        wornei,
+      </if>
+      <if test="wordate != null" >
+        wordate,
+      </if>
+      <if test="isverify != null" >
+        isverify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wid != null" >
+        #{wid,jdbcType=INTEGER},
+      </if>
+      <if test="gradeid != null" >
+        #{gradeid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="relid != null" >
+        #{relid,jdbcType=INTEGER},
+      </if>
+      <if test="wortitle != null" >
+        #{wortitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wornei != null" >
+        #{wornei,jdbcType=VARCHAR},
+      </if>
+      <if test="wordate != null" >
+        #{wordate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isverify != null" >
+        #{isverify,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.WorksExample" resultType="java.lang.Integer" >
+    select count(*) from works
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update works
+    <set >
+      <if test="record.wid != null" >
+        wid = #{record.wid,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradeid != null" >
+        gradeid = #{record.gradeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.relid != null" >
+        relid = #{record.relid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wortitle != null" >
+        wortitle = #{record.wortitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wornei != null" >
+        wornei = #{record.wornei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wordate != null" >
+        wordate = #{record.wordate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isverify != null" >
+        isverify = #{record.isverify,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update works
+    set wid = #{record.wid,jdbcType=INTEGER},
+      gradeid = #{record.gradeid,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=INTEGER},
+      relid = #{record.relid,jdbcType=INTEGER},
+      wortitle = #{record.wortitle,jdbcType=VARCHAR},
+      wornei = #{record.wornei,jdbcType=VARCHAR},
+      wordate = #{record.wordate,jdbcType=TIMESTAMP},
+      isverify = #{record.isverify,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.Works" >
+    update works
+    <set >
+      <if test="gradeid != null" >
+        gradeid = #{gradeid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="relid != null" >
+        relid = #{relid,jdbcType=INTEGER},
+      </if>
+      <if test="wortitle != null" >
+        wortitle = #{wortitle,jdbcType=VARCHAR},
+      </if>
+      <if test="wornei != null" >
+        wornei = #{wornei,jdbcType=VARCHAR},
+      </if>
+      <if test="wordate != null" >
+        wordate = #{wordate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isverify != null" >
+        isverify = #{isverify,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.Works" >
+    update works
+    set gradeid = #{gradeid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      relid = #{relid,jdbcType=INTEGER},
+      wortitle = #{wortitle,jdbcType=VARCHAR},
+      wornei = #{wornei,jdbcType=VARCHAR},
+      wordate = #{wordate,jdbcType=TIMESTAMP},
+      isverify = #{isverify,jdbcType=INTEGER}
+    where wid = #{wid,jdbcType=INTEGER}
+  </update>
+</mapper>
