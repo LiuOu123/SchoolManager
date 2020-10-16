@@ -1,5 +1,7 @@
 package com.kgc.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Works {
@@ -15,6 +17,7 @@ public class Works {
 
     private String wornei;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date wordate;
 
     private Integer isverify;

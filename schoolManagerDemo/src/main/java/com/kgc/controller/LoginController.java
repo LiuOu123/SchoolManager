@@ -4,6 +4,7 @@ import com.kgc.mapper.AccountMapper;
 import com.kgc.mapper.PositionMapper;
 import com.kgc.mapper.UserInfoMapper;
 import com.kgc.pojo.*;
+import com.kgc.service.DhnService;
 import com.kgc.service.LoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,6 @@ public class LoginController {
     AccountMapper accountMapper;
     @Resource
     UserInfoMapper userInfoMapper;
-
 
     @RequestMapping("/toLogin")//判断用户登录是否通过,
     public String toLogin() {
@@ -53,12 +53,12 @@ public class LoginController {
                         //根据老师账号id查找管理班级的id
                         List<GradeUser> gradeUsers = loService.selectByUserId(user.get(i).getAid());
                         //List<Grade> grades = loGradeService.selectByGradeId(gradeUsers.get(0).getGradeid());
-                        List<Grade> banList=new ArrayList<Grade>();
-                        for(int j=0;j<gradeUsers.size();j++){
+                        List<Grade> banList = new ArrayList<Grade>();
+                        for (int j = 0; j < gradeUsers.size(); j++) {
                             List<Grade> grades = loService.selectByGradeId(gradeUsers.get(j).getGradeid());
                             banList.add(grades.get(0));
                         }
-                        session.setAttribute("banList",banList);
+                        session.setAttribute("banList", banList);
                         //查询最近七次作业提交情况
                         List<Integer> sum = new ArrayList<>();
                         List<Releasee> releasees = loService.select7daycount(gradeUsers.get(0).getGradeid());
@@ -76,7 +76,6 @@ public class LoginController {
                         System.out.println("sum:" + sum.toString());
                         return "/thome";
                     }
-
                 }
             }
             model.addAttribute("msg", "账号或密码错误");
@@ -89,7 +88,7 @@ public class LoginController {
 
     @RequestMapping("/testZong")
     @ResponseBody
-    public String test(){
+    public String test() {
         //根据老师账号id查找管理班级的id
         List<GradeUser> gradeUsers = loService.selectByUserId(2);
         for (GradeUser gradeUser : gradeUsers) {

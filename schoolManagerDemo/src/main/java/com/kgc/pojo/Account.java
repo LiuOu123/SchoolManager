@@ -13,6 +13,17 @@ public class Account {
 
     private Date createdate;
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "aid=" + aid +
+                ", posid=" + posid +
+                ", accountname='" + accountname + '\'' +
+                ", password='" + password + '\'' +
+                ", createdate=" + createdate +
+                '}';
+    }
+
     public Integer getAid() {
         return aid;
     }
