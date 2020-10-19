@@ -19,6 +19,10 @@ public interface ChitchatMapper {
 
     List<Chitchat> selectByExample(ChitchatExample example);
 
+    List<Chitchat> selectByXiao(@Param("aid") Integer aid, @Param("haoid") Integer haoid);
+    List<Chitchat> selectByXiao1(@Param("aid") Integer aid, @Param("haoid") Integer haoid);
+    List<Chitchat> selectNiCeName(@Param("aid") Integer aid, @Param("nickname") String nickname);
+    List<Chitchat> selectByHao(@Param("aid") Integer aid);
     Chitchat selectByPrimaryKey(Integer chid);
 
     int updateByExampleSelective(@Param("record") Chitchat record, @Param("example") ChitchatExample example);

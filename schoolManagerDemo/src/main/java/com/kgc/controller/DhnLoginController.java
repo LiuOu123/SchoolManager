@@ -55,6 +55,7 @@ public class DhnLoginController {
                         //用户名
                         session.setAttribute("username", seluserid.get(i).getNickname());
                         //用户id
+                        session.setAttribute("aid", aid);
                         session.setAttribute("userid", seluserid.get(i).getUid());
                         return "student";
                     }

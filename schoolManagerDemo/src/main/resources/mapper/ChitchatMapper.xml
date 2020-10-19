@@ -7,6 +7,64 @@
     <result column="haoid" property="haoid" jdbcType="INTEGER" />
     <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseChitXiao" type="com.kgc.pojo.Chitchat" >
+    <id column="chid" property="chid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="haoid" property="haoid" jdbcType="INTEGER" />
+    <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
+    <collection property="xiaoXis" ofType="com.kgc.pojo.XiaoXi">
+      <id column="xid" property="xid" jdbcType="INTEGER" />
+      <result column="chid" property="chid" jdbcType="INTEGER" />
+      <result column="zhu" property="zhu" jdbcType="INTEGER" />
+      <result column="neirong" property="neirong" jdbcType="VARCHAR" />
+      <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+      <result column="xtype" property="xtype" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <resultMap id="HaoYouMoHu" type="com.kgc.pojo.Chitchat" >
+    <id column="chid" property="chid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="haoid" property="haoid" jdbcType="INTEGER" />
+    <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
+    <association property="userInfo" javaType="com.kgc.pojo.UserInfo">
+      <id column="uid" property="uid" jdbcType="INTEGER" />
+      <result column="accid" property="accid" jdbcType="INTEGER" />
+      <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+      <result column="age" property="age" jdbcType="INTEGER" />
+      <result column="sex" property="sex" jdbcType="VARCHAR" />
+      <result column="address" property="address" jdbcType="VARCHAR" />
+      <result column="eamil" property="eamil" jdbcType="VARCHAR" />
+      <result column="phone" property="phone" jdbcType="VARCHAR" />
+      <result column="touxiang" property="touxiang" jdbcType="VARCHAR" />
+      <result column="qianming" property="qianming" jdbcType="VARCHAR" />
+      <result column="modification" property="modification" jdbcType="TIMESTAMP" />
+      <result column="utype" property="utype" jdbcType="INTEGER" />
+      <result column="score" property="score" jdbcType="INTEGER" />
+    </association>
+
+  </resultMap>
+  <select id="selectByXiao" resultMap="BaseChitXiao">
+    select ch.chid,userid,haoid,beizhu,xid,zhu,neirong,createdate,xtype from chitchat ch left join  xiaoxi xi on ch.chid=xi.chid
+    <where> userid =#{aid} and haoid=#{haoid}</where> order by createdate desc
+  </select>
+  <select id="selectByXiao1" resultMap="BaseChitXiao">
+    select ch.chid,userid,haoid,beizhu,xid,zhu,neirong,createdate,xtype from chitchat ch left join  xiaoxi xi on ch.chid=xi.chid
+    <where> userid =#{aid} and haoid=#{haoid}</where> order by createdate
+  </select>
+  <select id="selectByHao" resultMap="BaseChitXiao">
+    select ch.chid,userid,haoid,beizhu,xid,zhu,neirong,createdate,xtype from chitchat ch left join  xiaoxi xi on ch.chid=xi.chid
+    <where> userid =#{aid}</where> order by createdate desc
+  </select>
+
+  <select id="selectNiCeName" resultMap="HaoYouMoHu">
+    select * from userinfo,chitchat
+    where userid=#{aid}
+    and haoid=accid
+    <if test="nickname!=null">
+      and nickname like #{nickname}
+      or beizhu like #{nickname}
+    </if>
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -193,4 +251,6 @@
       beizhu = #{beizhu,jdbcType=VARCHAR}
     where chid = #{chid,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

@@ -1,5 +1,7 @@
 package com.kgc.pojo;
 
+import java.util.List;
+
 public class Chitchat {
     private Integer chid;
 
@@ -8,6 +10,36 @@ public class Chitchat {
     private Integer haoid;
 
     private String beizhu;
+
+    private List<XiaoXi> xiaoXis;
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "Chitchat{" +
+                "chid=" + chid +
+                ", userid=" + userid +
+                ", haoid=" + haoid +
+                ", beizhu='" + beizhu + '\'' +
+                ", xiaoXis=" + xiaoXis +
+                '}';
+    }
+
+    public List<XiaoXi> getXiaoXis() {
+        return xiaoXis;
+    }
+
+    public void setXiaoXis(List<XiaoXi> xiaoXis) {
+        this.xiaoXis = xiaoXis;
+    }
 
     public Integer getChid() {
         return chid;
