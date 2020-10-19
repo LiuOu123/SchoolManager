@@ -28,6 +28,51 @@ public class UserInfo {
     private Integer utype;
 
     private Integer score;
+    private String gname;
+    private Integer guid;
+    private Integer  gradeid;
+    private Integer userid;
+    private  Integer personsum;
+
+    public String getGname() {
+        return gname;
+    }
+
+    public void setGname(String gname) {
+        this.gname = gname;
+    }
+
+    public Integer getGuid() {
+        return guid;
+    }
+
+    public void setGuid(Integer guid) {
+        this.guid = guid;
+    }
+
+    public Integer getGradeid() {
+        return gradeid;
+    }
+
+    public void setGradeid(Integer gradeid) {
+        this.gradeid = gradeid;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public Integer getPersonsum() {
+        return personsum;
+    }
+
+    public void setPersonsum(Integer personsum) {
+        this.personsum = personsum;
+    }
 
     public Integer getUid() {
         return uid;

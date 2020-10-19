@@ -15,6 +15,10 @@
     <result column="modification" property="modification" jdbcType="TIMESTAMP" />
     <result column="utype" property="utype" jdbcType="INTEGER" />
     <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="gname" property="gname" jdbcType="VARCHAR" />
+    <result column="guid" property="guid" jdbcType="INTEGER" />
+    <result column="gradeid" property="gradeid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,6 +82,25 @@
     uid, accid, nickname, age, sex, address, eamil, phone, touxiang, qianming, modification, 
     utype, score
   </sql>
+  <sql id="Base_Column_List2" >
+    COUNT(accid) as personsum,gname,gradeid
+  </sql>
+  <select id="selectByExample2" resultMap="BaseResultMap" parameterType="com.kgc.pojo.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List2" />
+    FROM grade g,gradeuser gu,userinfo u
+    WHERE g.gid=gu.`gradeid` AND g.gid=u.`accid`
+    GROUP BY gradeid
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.UserInfoExample" >
     select
     <if test="distinct" >

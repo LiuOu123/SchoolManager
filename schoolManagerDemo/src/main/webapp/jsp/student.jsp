@@ -66,7 +66,7 @@
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
-                    <a onclick="xadmin.open('个人信息','http://www.baidu.com')">个人信息</a></dd>
+                    <a onclick="xadmin.open('个人信息','/jsp/geren.jsp')" href="${pageContext.request.contextPath }/hshdoinfo">个人信息</a></dd>
                 <dd>
                     <a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
                 <dd>
@@ -131,12 +131,12 @@
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="订单管理">&#xe723;</i>
+                    <i class="iconfont left-nav-li" lay-tips="班主任管理">&#xe723;</i>
                     <cite>订单管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('订单列表','order-list.html')">
+                        <a onclick="xadmin.add_tab('班级列表','jsp/head-teacher-list.jsp')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite></a>
                     </li>
