@@ -47,6 +47,7 @@ public class DhnLoginController {
             for (int i = 0; i < user.size(); i++) {
                 if (user.get(i).getPassword().equals(password)) {
                     Integer posid = user.get(i).getPosid();
+
                     if (posid == 1) {
                         Position selPosition = dhnService.selPosition(posid);
                         session.setAttribute("Position", selPosition);
@@ -56,6 +57,7 @@ public class DhnLoginController {
                         //用户名
                         session.setAttribute("username", seluserid.get(i).getNickname());
                         //用户id
+                        session.setAttribute("aid", aid);
                         session.setAttribute("userid", seluserid.get(i).getUid());
                         return "student";
                     } else if (posid == 2) {
@@ -67,6 +69,7 @@ public class DhnLoginController {
                         //用户名
                         session.setAttribute("username", seluserid.get(i).getNickname());
                         //用户id
+                        session.setAttribute("aid", aid);
                         session.setAttribute("userid", seluserid.get(i).getUid());
                         return "student";
                     } else if (posid == 3) {

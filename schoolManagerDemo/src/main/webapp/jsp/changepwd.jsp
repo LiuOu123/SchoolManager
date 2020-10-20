@@ -42,7 +42,8 @@
             <p></p>
             <div class="youxiang">
                 <input name="username" placeholder="Email"  type="text" lay-verify="required" class="layui-input email" >
-                <input value="发送" lay-submit lay-filter="login" style="width:100%;" type="button">
+                <hr class="hr15">
+                <input value="发送" class="faEmail"  style="width:100%;display: none;" type="button"  >
                 <hr class="hr15">
                 <input name="password" lay-verify="required" placeholder="验证码"  type="password" class="layui-input">
                 <hr class="hr15">
@@ -64,7 +65,7 @@
             <form method="post" class="layui-form" action="">
                 <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
                 <hr class="hr15">
-                <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+                <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input" >
                 <hr class="hr15">
                 <input value="修改" lay-submit lay-filter="login" style="width:100%;" type="submit">
                 <hr class="hr20" >
@@ -87,14 +88,28 @@
             var email = $.trim($('.email').val());
             if (email == "") {
                 alert("请填写邮箱");
+                $(".faEmail").hide();
                 $('#J_release').removeClass('btn_disabled').prop('disabled', 0);
                 return;
             } else if(!reg.test(email)) {
                 alert("邮箱格式不正确，请重新输入！");
+                $(".faEmail").hide();
                 return;
+            }else{
+                $(".faEmail").fadeIn(500);
             }
+        })
+        $(".faEmail").click(function () {
+            $(".faEmail").css("background-color","grey");
+            $(".faEmail").attr("readonly","readonly");
+            var sum=60;
+            time = setInterval(function dao() {
+                sum--;
+                $(".faEmail").val(sum);
+                if (sum==0){
 
-
+                }
+            }, 1000);
         })
     })
 </script>

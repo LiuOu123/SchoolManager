@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Amaze UI仿电脑版微信聊天界面代码</title>
+    <title>学生聊天界面代码</title>
     <link rel="stylesheet" href="../static/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../static/css/main.css"/>
 </head>
