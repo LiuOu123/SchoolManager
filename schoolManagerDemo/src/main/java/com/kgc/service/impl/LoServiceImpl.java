@@ -82,4 +82,28 @@ public class LoServiceImpl implements LoService {
        }*/
         return sum;
     }
+
+    @Override
+    public List<GradeUser> selectByUserIdd(int userID) {
+        GradeUserExample example=new GradeUserExample();
+        GradeUserExample.Criteria criteria = example.createCriteria();
+        criteria.andUseridEqualTo(userID);
+        List<GradeUser> gradeUsers = gradeUserMapper.selectByExample(example);
+        return gradeUsers;
+    }
+
+    @Override
+    public List<Grade> selectByGid(int gid) {
+        GradeExample example=new GradeExample();
+        GradeExample.Criteria criteria = example.createCriteria();
+        criteria.andGidEqualTo(gid);
+        List<Grade> grades = gradeMapper.selectByExample(example);
+        return grades;
+    }
+
+    @Override
+    public int insertReleasee(Releasee releasee) {
+        int i = releaseeMapper.insertSelective(releasee);
+        return i;
+    }
 }

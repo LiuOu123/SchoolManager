@@ -7,11 +7,11 @@ import com.kgc.service.LoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class LoTeacherHomeController {
@@ -83,5 +83,32 @@ public class LoTeacherHomeController {
         }
         System.out.println("sum:" + sum.toString());
         return "/ttongji";
+    }
+    @RequestMapping("/addHomeWork")//发布作业
+    @ResponseBody
+    public Map<String,Object> addHomeWork(HttpSession session){
+        Map<String,Object> map=new HashMap<>();
+        int userid = (int)session.getAttribute("aid");
+        List<GradeUser> gradeUsers = loService.selectByUserIdd(userid);//根据用户id查找名下有多少个班级
+        List<Grade> grades=new ArrayList<>();
+        for(int i=0;i<gradeUsers.size();i++){
+            List<Grade> grades1 = loService.selectByGid(gradeUsers.get(i).getGradeid());
+            grades.add(grades1.get(grades1.size()-1));
+        }
+        map.put("data",grades);
+        return map;
+    }
+    @RequestMapping("/addHomeWorkOver")
+    @ResponseBody
+    public Map<String,Object> addHomeWorkOver(Releasee releasee){
+        Map<String,Object> map=new HashMap<>();
+        releasee.setReldate(new Date());
+        int i = loService.insertReleasee(releasee);
+        if(i>0){
+            map.put("status","true");
+        }else{
+            map.put("status","false");
+        }
+        return map;
     }
 }
