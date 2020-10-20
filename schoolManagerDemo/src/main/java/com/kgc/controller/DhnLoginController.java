@@ -5,12 +5,10 @@ import com.github.pagehelper.PageInfo;
 import com.kgc.mapper.AccountMapper;
 import com.kgc.pojo.*;
 import com.kgc.service.DhnService;
-import jdk.nashorn.internal.ir.IfNode;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +32,7 @@ public class DhnLoginController {
     DhnService dhnService;
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/")
     public String login() {
         return "login";
     }
@@ -48,7 +46,32 @@ public class DhnLoginController {
         if (user.size() > 0) {
             for (int i = 0; i < user.size(); i++) {
                 if (user.get(i).getPassword().equals(password)) {
-                    if (user.get(i).getPosid() == 1) {
+                    Integer posid = user.get(i).getPosid();
+                    if (posid == 1) {
+                        Position selPosition = dhnService.selPosition(posid);
+                        session.setAttribute("Position", selPosition);
+                        //账号id
+                        Integer aid = user.get(i).getAid();
+                        List<UserInfo> seluserid = dhnService.seluserid(aid);
+                        //用户名
+                        session.setAttribute("username", seluserid.get(i).getNickname());
+                        //用户id
+                        session.setAttribute("userid", seluserid.get(i).getUid());
+                        return "student";
+                    } else if (posid == 2) {
+                        Position selPosition = dhnService.selPosition(posid);
+                        session.setAttribute("Position", selPosition);
+                        //账号id
+                        Integer aid = user.get(i).getAid();
+                        List<UserInfo> seluserid = dhnService.seluserid(aid);
+                        //用户名
+                        session.setAttribute("username", seluserid.get(i).getNickname());
+                        //用户id
+                        session.setAttribute("userid", seluserid.get(i).getUid());
+                        return "student";
+                    } else if (posid == 3) {
+                        Position selPosition = dhnService.selPosition(posid);
+                        session.setAttribute("Position", selPosition);
                         //账号id
                         Integer aid = user.get(i).getAid();
                         List<UserInfo> seluserid = dhnService.seluserid(aid);
@@ -72,18 +95,14 @@ public class DhnLoginController {
     public String tijiaozuoye(HttpSession session, Model model, HttpServletRequest request) {
         int Num = 1;
         String pn = request.getParameter("pn");
-        System.out.println(pn);
         if (pn != null) {
             Num = Integer.parseInt(pn);
         }
-
-
         Integer userid = (Integer) session.getAttribute("userid");
-        //这是是查班级id的吧   userid不是他的主键啊
         GradeUser gradeUsers = dhnService.selGradeId(userid);
         //班级id
         Integer gradeid = gradeUsers.getGradeid();
-        int PageSize = 4;
+        int PageSize = 3;
         PageHelper.startPage(Num, PageSize);
         List<Releasee> selwork = dhnService.selwork(gradeid, Num, PageSize);
         for (int i = 0; i < selwork.size(); i++) {
@@ -100,9 +119,17 @@ public class DhnLoginController {
     }
 
     @RequestMapping("/selhuifu")
-    public String selhuifu(Integer rid, Model model) {
-        List<Reply> selhuifu = dhnService.selhuifu(rid);
-        model.addAttribute("list", selhuifu);
+    public String selhuifu(Integer rid, Model model, HttpServletRequest request) {
+        int Num = 1;
+        String pn = request.getParameter("pn");
+        if (pn != null) {
+            Num = Integer.parseInt(pn);
+        }
+        int PageSize = 4;
+        PageHelper.startPage(Num, PageSize);
+        List<Reply> selhuifu = dhnService.selhuifu(rid, Num, PageSize);
+        PageInfo pageInfo = new PageInfo(selhuifu);
+        model.addAttribute("list", pageInfo);
         return "huifu";
     }
 

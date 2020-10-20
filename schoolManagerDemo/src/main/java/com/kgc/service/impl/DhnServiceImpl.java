@@ -29,6 +29,9 @@ public class DhnServiceImpl implements DhnService {
     @Resource
     ReplyMapper replyMapper;
 
+    @Resource
+    PositionMapper positionMapper;
+
 
     @Override
     public List<UserInfo> seluserid(Integer aid) {
@@ -57,7 +60,7 @@ public class DhnServiceImpl implements DhnService {
     }
 
     @Override
-    public List<Reply> selhuifu(Integer workid) {
+    public List<Reply> selhuifu(Integer workid, Integer Num, Integer pageSize) {
         ReplyExample example = new ReplyExample();
         ReplyExample.Criteria criteria = example.createCriteria();
         criteria.andWoridEqualTo(workid);
@@ -67,5 +70,10 @@ public class DhnServiceImpl implements DhnService {
     @Override
     public int tijiaozuoye(Works works) {
         return worksMapper.insert(works);
+    }
+
+    @Override
+    public Position selPosition(Integer pid) {
+        return positionMapper.selectByPrimaryKey(pid);
     }
 }
