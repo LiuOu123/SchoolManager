@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 86185
@@ -33,7 +34,11 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="./index.html">欢迎 ${username}同学</a></div>
+        <a href="./index.html">欢迎 ${username}
+            <c:if test="${Position.getPid()==1}">同学</c:if>
+            <c:if test="${Position.getPid()==2}">教员</c:if>
+            <c:if test="${Position.getPid()==3}">老师</c:if>
+        </a></div>
     <div class="left_open">
         <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
     </div>

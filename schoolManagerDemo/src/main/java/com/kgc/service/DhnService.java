@@ -16,12 +16,15 @@ public interface DhnService {
     GradeUser selGradeId(Integer userid);
 
     //根据班级id查作业
-    List<Releasee> selwork(Integer gradeid,Integer Num,Integer pageSize);
+    List<Releasee> selwork(Integer gradeid, Integer Num, Integer pageSize);
 
     //根据作业id查看回复
-    List<Reply> selhuifu(Integer workid);
+    List<Reply> selhuifu(Integer workid, Integer Num, Integer pageSize);
 
     //提交作业
     int tijiaozuoye(Works works);
+
+    //查询职位
+    Position selPosition(Integer pid);
 
 }

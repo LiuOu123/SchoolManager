@@ -41,14 +41,14 @@
             <!-- fade有淡入淡出的效果-->
             <p></p>
             <div class="youxiang">
-                <input name="username" placeholder="Email"  type="text" lay-verify="required" class="layui-input" >
+                <input name="username" placeholder="Email"  type="text" lay-verify="required" class="layui-input email" >
+                <input value="发送" lay-submit lay-filter="login" style="width:100%;" type="button">
                 <hr class="hr15">
                 <input name="password" lay-verify="required" placeholder="验证码"  type="password" class="layui-input">
                 <hr class="hr15">
                 <input value="验证" lay-submit lay-filter="login" style="width:100%;" type="button">
                 <hr class="hr20" >
             </div>
-
             <form method="post" class="layui-form" action="" hidden>
                 <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
                 <hr class="hr15">
@@ -79,6 +79,23 @@
 <script src='/static/js/bootstrap.min.js'></script>
 <script>
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    })
+
+    $(function () {
+        $(".email").blur(function () {
+            var reg = new RegExp("^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-z]{2,}$");
+            var email = $.trim($('.email').val());
+            if (email == "") {
+                alert("请填写邮箱");
+                $('#J_release').removeClass('btn_disabled').prop('disabled', 0);
+                return;
+            } else if(!reg.test(email)) {
+                alert("邮箱格式不正确，请重新输入！");
+                return;
+            }
+
+
+        })
     })
 </script>
 </html>
