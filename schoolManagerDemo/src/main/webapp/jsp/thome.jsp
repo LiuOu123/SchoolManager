@@ -97,9 +97,9 @@
                             <cite>统计页面</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.html')">
+                        <a onclick="xadmin.add_tab('发布作业','/jsp/LoClassUserInfo.jsp')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员列表(静态表格)</cite></a>
+                            <cite>发布作业</cite></a>
                     </li>
                     <li>
                         <a onclick="xadmin.add_tab('会员列表(动态表格)','member-list1.html',true)">

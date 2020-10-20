@@ -1,5 +1,7 @@
 package com.kgc.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.Grade;
 import com.kgc.pojo.GradeUser;
 import com.kgc.pojo.Releasee;
@@ -7,11 +9,11 @@ import com.kgc.service.LoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class LoTeacherHomeController {
@@ -83,5 +85,55 @@ public class LoTeacherHomeController {
         }
         System.out.println("sum:" + sum.toString());
         return "/ttongji";
+    }
+    @RequestMapping("/addHomeWork")//发布作业
+    @ResponseBody
+    public Map<String,Object> addHomeWork(HttpSession session){
+        Map<String,Object> map=new HashMap<>();
+        int userid = (int)session.getAttribute("aid");
+        List<GradeUser> gradeUsers = loService.selectByUserIdd(userid);//根据用户id查找名下有多少个班级
+        List<Grade> grades=new ArrayList<>();
+        for(int i=0;i<gradeUsers.size();i++){
+            List<Grade> grades1 = loService.selectByGid(gradeUsers.get(i).getGradeid());
+            grades.add(grades1.get(grades1.size()-1));
+        }
+        map.put("data",grades);
+        return map;
+    }
+    @RequestMapping("/addHomeWorkOver")
+    @ResponseBody
+    public Map<String,Object> addHomeWorkOver(Releasee releasee){
+        Map<String,Object> map=new HashMap<>();
+        releasee.setReldate(new Date());
+        int i = loService.insertReleasee(releasee);
+        if(i>0){
+            map.put("status","true");
+        }else{
+            map.put("status","false");
+        }
+        return map;
+    }
+    @RequestMapping("/teacherChaHomeWork")
+    @ResponseBody
+    public Map<String,Object> TeacherChaHomeWord(HttpSession session,Integer pageNum,Integer pageSize){
+        System.out.println("pageNum"+pageNum);
+        System.out.println("pageSize"+pageSize);
+
+        Map<String,Object> map=new HashMap<>();
+        int aid =(int)session.getAttribute("aid");
+
+        List<GradeUser> gradeUsers = loService.selectByUserIdd(aid);//根据id查找名下有多少个班级
+
+        List<Releasee> releaseesZong=new ArrayList<>();
+        PageInfo<Releasee> releaseePageInfo=null;
+        for(int i=0;i<gradeUsers.size();i++){
+             releaseePageInfo = loService.selectByGradeIdd(pageNum, pageSize, gradeUsers.get(i).getGradeid());
+            for(int j=0;j<releaseePageInfo.getList().size();j++) {
+                releaseesZong.add(releaseePageInfo.getList().get(j));
+            }
+        }
+
+        map.put("data",releaseePageInfo);
+        return map;
     }
 }

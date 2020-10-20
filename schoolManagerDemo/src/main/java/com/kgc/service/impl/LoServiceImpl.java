@@ -1,5 +1,7 @@
 package com.kgc.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.mapper.GradeMapper;
 import com.kgc.mapper.GradeUserMapper;
 import com.kgc.mapper.ReleaseeMapper;
@@ -22,6 +24,8 @@ public class LoServiceImpl implements LoService {
     ReleaseeMapper releaseeMapper;
     @Resource
     WorksMapper worksMapper;
+    @Resource
+    LoService loService;
 
     @Override
     public List<Grade> selectByGradeId(int gradeId) {
@@ -81,5 +85,44 @@ public class LoServiceImpl implements LoService {
            }
        }*/
         return sum;
+    }
+
+    @Override
+    public List<GradeUser> selectByUserIdd(int userID) {
+        GradeUserExample example=new GradeUserExample();
+        GradeUserExample.Criteria criteria = example.createCriteria();
+        criteria.andUseridEqualTo(userID);
+        List<GradeUser> gradeUsers = gradeUserMapper.selectByExample(example);
+        return gradeUsers;
+    }
+
+    @Override
+    public List<Grade> selectByGid(int gid) {
+        GradeExample example=new GradeExample();
+        GradeExample.Criteria criteria = example.createCriteria();
+        criteria.andGidEqualTo(gid);
+        List<Grade> grades = gradeMapper.selectByExample(example);
+        return grades;
+    }
+
+    @Override
+    public int insertReleasee(Releasee releasee) {
+        int i = releaseeMapper.insertSelective(releasee);
+        return i;
+    }
+
+    @Override
+    public PageInfo<Releasee> selectByGradeIdd(Integer pageNum,Integer pageSize,int gradeId) {
+        ReleaseeExample example=new ReleaseeExample();
+        ReleaseeExample.Criteria criteria = example.createCriteria();
+        criteria.andGradeidEqualTo(gradeId);
+        PageHelper.startPage(pageNum, pageSize);
+        List<Releasee> releasees = releaseeMapper.selectByExample(example);
+        for(int i=0;i<releasees.size();i++){
+            List<Grade> grades = loService.selectByGid(releasees.get(i).getGradeid());
+            releasees.get(i).setGrade(grades.get(grades.size()-1));
+        }
+        PageInfo<Releasee> pageInfo = new PageInfo<>(releasees);
+        return pageInfo;
     }
 }

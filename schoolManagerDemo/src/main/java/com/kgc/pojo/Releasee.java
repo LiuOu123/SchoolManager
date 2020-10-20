@@ -13,6 +13,16 @@ public class Releasee {
 
     private Date reldate;
 
+    private Grade grade;
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
     public Integer getRid() {
         return rid;
     }
