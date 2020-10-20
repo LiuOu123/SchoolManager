@@ -120,6 +120,7 @@
                         </div>
                     </div>
                 </div>--%>
+                <center>
                 <table class="table" width="300" border="1" align="center">
                     <tr align="center">
                         <td><a href="javascript:void(0)" onclick="shou()">首页</a></td>
@@ -129,6 +130,7 @@
                         <td><a href="javascript:void(0)" onclick="wei()">尾页</a></td>
                     </tr>
                 </table>
+                </center>
             </div>
         </div>
     </div>
