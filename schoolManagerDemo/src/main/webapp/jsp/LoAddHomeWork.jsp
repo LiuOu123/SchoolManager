@@ -127,6 +127,17 @@
          var banji=$("#banji").val();
          var biaoti=$("#biaoti").val();
          var neirong=$("#neirong").val();
+         if(banji==0){
+             alert("班级不能为空");
+             return;
+         }
+         if (biaoti==""){
+             alert("标题不能为空")
+             return;
+         }
+         if(neirong==""){
+             alert("内容不能为空")
+         }
          /*alert(banji)
         alert(biaoti)
         alert(neirong)*/
