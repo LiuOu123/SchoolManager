@@ -32,7 +32,7 @@
                         <img src="/static/images/own_head.jpg" alt="" class="aidimg"/>
                     </div>
                     <div class="own_head_bottom">
-                        <p><span>地区</span>江西 九江</p>
+                        <p><span>地区</span><span class="diqu"></span></p>
                         <div class="own_head_bottom_img">
                             <a href=""><img src="/static/images/icon/head_1.png"/></a>
                             <a href=""><img src="/static/images/icon/head_2.png"/></a>

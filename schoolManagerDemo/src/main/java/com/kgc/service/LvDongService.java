@@ -21,7 +21,7 @@ public interface LvDongService {
     UserInfo selectUserByAid(Integer id);
 
     //添加好友申请
-     int lvAddBacklog(Backlog backlog);
+    int lvAddBacklog(Backlog backlog);
     //查询有没有好友申请
     List<Backlog> lvSelectFriend(Integer id);
     //添加好友
@@ -30,4 +30,8 @@ public interface LvDongService {
     int lvDelChitchat(Integer backid);
     //获取好友关系id
     Chitchat lvChitchatId(Integer aid, Integer haoid);
+    //查询自己的账号
+    Account lvSelectByAcc(Integer aid);
+    //查询自己的信息
+    UserInfo lvSelectByUserInfo(Integer aid);
 }

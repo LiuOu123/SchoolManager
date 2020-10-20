@@ -1,75 +1,7 @@
 $(function () {
     var aid = $("input[name=aid]").val();
-    var json = {
-        "aid": aid
-    }
-    //根据登陆的账号id获取他的好友
-    var $li;
-    $.post("/lvSelectHao", json, function (reslut) {
-        $(".user_list li").remove();
-        //判断是否有好友
-        if (reslut.status == "true") {
-            $.each(reslut.data, function (i, v) {
-                var beizhu = "";
-                if (typeof(v.beizhu) === "undefined") {
-                    beizhu = "";
-                } else {
-                    beizhu = v.beizhu;
-                }
-                var jsonhao = {
-                    "aid": aid,
-                    "haoid": v.haoid
-                }
-                $.ajax({
-                    "url": "/lvSelectHaoXinXi",
-                    "type": "POST",
-                    "data": jsonhao,
-                    "dataType": "json",
-                    "async": false,
-                    success: function (reslutHao) {
-                        var xingQi;
-                        var neiro = "";
-                        var createdate;
-                        if (typeof(reslutHao.data2.xiaoXis[0].createdate) === "undefined") {
-                            xingQi = "未联系";
-                        } else {
-                            neiro = reslutHao.data2.xiaoXis[0].neirong;
-                            createdate = reslutHao.data2.xiaoXis[0].createdate;
-                            xingQi = date(createdate);
-                        }
-                        var $li;
-                        if (dianClass == reslutHao.data2.haoid) {
-                            if (typeof(reslutHao.data2.beizhu) == "undefined") {
-                                $li = $('<li class="user_active" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
-                            } else {
-                                $li = $('<li class="user_active"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
-                            }
-                        } else {
-                            if (typeof(reslutHao.data2.beizhu) == "undefined") {
-                                $li = $('<li class="user_li" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
-                            } else {
-                                $li = $('<li class="user_li"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
-                            }
-                        }
-                        $(".user_list").append($li);
-                    }
-                })
-
-            })
-            $(".user_li").click(function () {
-                $("#chatbox li").remove();
-                $(this).attr("class", "user_active");
-                $(this).siblings().attr("class", "user_li")
-                var name = $(this).children(".user_text").children(".user_name").text();
-                var haoid = $(this).children(".user_head").children("input").val();
-                var haoimg = $(this).children(".user_head").children("img").attr("src");
-                dianClass = haoid;
-                liaoTian(haoid, haoimg, name)
-            })
-            //没有好友
-        } else {
-        }//判断是否有好友else
-    }, "json")//根据登陆的账号id获取他的好友post
+    jiazai()
+    cha();
     b();
     //搜索框查询好友
     $(".chahy").blur(function () {
@@ -91,7 +23,6 @@ $(function () {
                     "aid": aid,
                     "haoid": v.haoid
                 }
-
                 $.ajax({
                     "url": "/lvSelectHaoXinXi",
                     "type": "POST",
@@ -112,15 +43,15 @@ $(function () {
                         var $li;
                         if (dianClass == reslutHao.data2.haoid) {
                             if (typeof(reslutHao.data2.beizhu) == "undefined") {
-                                $li = $('<li class="user_active" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
+                                $li = $('<li class="user_active" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
                             } else {
-                                $li = $('<li class="user_active"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
+                                $li = $('<li class="user_active"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
                             }
                         } else {
                             if (typeof(reslutHao.data2.beizhu) == "undefined") {
-                                $li = $('<li class="user_li" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
+                                $li = $('<li class="user_li" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
                             } else {
-                                $li = $('<li class="user_li"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/images/head/15.jpg"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
+                                $li = $('<li class="user_li"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
                             }
                         }
                         $(".user_list").append($li);
@@ -179,7 +110,93 @@ $(function () {
 
 })//jquery工厂函数
 var dianClass;
+function jiazai() {
+    var aid = $("input[name=aid]").val();
+    $.post("/lvSelectAid",{aid:aid},function (data) {
+          console.log(data)
+        $(".own_head").css("background","url(/static/touxiang/"+data.userInfo.touxiang+")")
+        $(".own_head").css("background-size","34px")
+        $(".own_name").text(data.userInfo.nickname)
+        $(".diqu").text(data.userInfo.address)
+        $(".own_numb").text("微信号："+data.account.accountname)
 
+        $(".aidimg").prop("src","/static/touxiang/"+data.userInfo.touxiang+"");
+    },"json")
+}
+function cha() {
+    var aid = $("input[name=aid]").val();
+    var json = {
+        "aid": aid
+    }
+    //根据登陆的账号id获取他的好友
+    var $li;
+    $.post("/lvSelectHao", json, function (reslut) {
+        $(".user_list li").remove();
+        //判断是否有好友
+        if (reslut.status == "true") {
+            $.each(reslut.data, function (i, v) {
+                var beizhu = "";
+                if (typeof(v.beizhu) === "undefined") {
+                    beizhu = "";
+                } else {
+                    beizhu = v.beizhu;
+                }
+                var jsonhao = {
+                    "aid": aid,
+                    "haoid": v.haoid
+                }
+                $.ajax({
+                    "url": "/lvSelectHaoXinXi",
+                    "type": "POST",
+                    "data": jsonhao,
+                    "dataType": "json",
+                    "async": false,
+                    success: function (reslutHao) {
+                        var xingQi;
+                        var neiro = "";
+                        var createdate;
+                        if (typeof(reslutHao.data2.xiaoXis[0].createdate) === "undefined") {
+                            xingQi = "未联系";
+                        } else {
+                            neiro = reslutHao.data2.xiaoXis[0].neirong;
+                            createdate = reslutHao.data2.xiaoXis[0].createdate;
+                            xingQi = date(createdate);
+                        }
+
+                        var $li;
+                        if (dianClass == reslutHao.data2.haoid) {
+                            if (typeof(reslutHao.data2.beizhu) == "undefined") {
+                                $li = $('<li class="user_active" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
+                            } else {
+                                $li = $('<li class="user_active"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
+                            }
+                        } else {
+                            if (typeof(reslutHao.data2.beizhu) == "undefined") {
+                                $li = $('<li class="user_li" ><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data.nickname + '</p> <p class="user_message">' + neiro + '</p></div> <div class="user_time">' + xingQi + '</div> </li>');
+                            } else {
+                                $li = $('<li class="user_li"><div class="user_head"><input hidden value=' + reslutHao.data2.haoid + '><img src="/static/touxiang/'+reslutHao.data.touxiang+'"/></div><div class="user_text"> <p class="user_name">' + reslutHao.data2.beizhu + '</p> <p class="user_message">' + neiro + '</p> </div> <div class="user_time">' + xingQi + '</div> </li>');
+                            }
+                        }
+                        $(".user_list").append($li);
+                    }
+                })
+
+            })
+            $(".user_li").click(function () {
+                $("#chatbox li").remove();
+                $(this).attr("class", "user_active");
+                $(this).siblings().attr("class", "user_li")
+                var name = $(this).children(".user_text").children(".user_name").text();
+                var haoid = $(this).children(".user_head").children("input").val();
+                var haoimg = $(this).children(".user_head").children("img").attr("src");
+                dianClass = haoid;
+                liaoTian(haoid, haoimg, name)
+            })
+            //没有好友
+        } else {
+        }//判断是否有好友else
+    }, "json")//根据登陆的账号id获取他的好友post
+}
 //局部刷新
 function xun() {
     time = setInterval(function getoList() {

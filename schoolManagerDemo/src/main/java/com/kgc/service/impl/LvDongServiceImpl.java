@@ -125,5 +125,19 @@ public class LvDongServiceImpl implements LvDongService {
         return chitchats.get(0);
     }
 
+    @Override
+    public Account lvSelectByAcc(Integer aid) {
+        return accountMapper.selectByPrimaryKey(aid);
+    }
+
+    @Override
+    public UserInfo lvSelectByUserInfo(Integer aid) {
+        UserInfoExample userInfoExample=new UserInfoExample();
+        UserInfoExample.Criteria criteria = userInfoExample.createCriteria();
+        criteria.andAccidEqualTo(aid);
+        criteria.andUtypeEqualTo(1);
+        return userinfoMapper.selectByExample(userInfoExample).get(0);
+    }
+
 
 }

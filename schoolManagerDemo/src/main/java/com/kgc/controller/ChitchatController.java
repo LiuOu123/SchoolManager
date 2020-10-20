@@ -222,4 +222,19 @@ public class ChitchatController {
         }
         return map;
     }
+    /**
+     * 东,查询自己的信息
+     * @return
+     */
+    @RequestMapping("/lvSelectAid")
+    @ResponseBody
+    public Map<String,Object> lvSelectAid(Integer aid){
+        Map<String,Object> map=new HashMap<>();
+        Account account = service.lvSelectByAcc(aid);
+        UserInfo userInfo = service.lvSelectByUserInfo(aid);
+        map.put("userInfo",userInfo);
+        map.put("account",account);
+        return map;
+    }
+
 }
