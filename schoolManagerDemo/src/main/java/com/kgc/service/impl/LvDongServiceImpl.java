@@ -139,5 +139,28 @@ public class LvDongServiceImpl implements LvDongService {
         return userinfoMapper.selectByExample(userInfoExample).get(0);
     }
 
+    @Override
+    public UserInfo lvSelectByEamilAid(String e) {
+        UserInfoExample userInfoExample=new UserInfoExample();
+        UserInfoExample.Criteria criteria = userInfoExample.createCriteria();
+        criteria.andEamilEqualTo(e);
+        criteria.andUtypeEqualTo(1);
+        return userinfoMapper.selectByExample(userInfoExample).get(0);
+    }
+
+    @Override
+    public int lvUpdateAccPwd(Account account) {
+        return accountMapper.updateByPrimaryKeySelective(account);
+    }
+
+    @Override
+    public UserInfo lvSelectByPhoneAid(String e) {
+        UserInfoExample userInfoExample=new UserInfoExample();
+        UserInfoExample.Criteria criteria = userInfoExample.createCriteria();
+        criteria.andPhoneEqualTo(e);
+        criteria.andUtypeEqualTo(1);
+        return userinfoMapper.selectByExample(userInfoExample).get(0);
+    }
+
 
 }

@@ -1,7 +1,10 @@
 package com.kgc.controller;
 
+import com.kgc.email.Email;
+import com.kgc.email.HttpClientUtil;
 import com.kgc.pojo.*;
 import com.kgc.service.LvDongService;
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -236,5 +239,84 @@ public class ChitchatController {
         map.put("account",account);
         return map;
     }
+    /**
+     * 东,邮箱验证
+     * @return
+     */
+    @RequestMapping("/toEamil")
+    @ResponseBody
+    public Map<String,Object> toEamil(String emails){
+        Map<String,Object> map=new HashMap<>();
+        Email email=new Email();
+        String yanZheng = email.fasong(emails, "找回密码");
+        map.put("yan",yanZheng);
+        return map;
+    }
 
+
+    @RequestMapping("/lvSelectByEamilAid")
+    @ResponseBody
+    public Map<String,Object> lvSelectByEamilAid(String e,String pwd){
+        Map<String,Object> map=new HashMap<>();
+        UserInfo userInfo = service.lvSelectByEamilAid(e);
+        Account account=new Account();
+        account.setAid(userInfo.getAccid());
+        account.setPassword(pwd);
+        int i = service.lvUpdateAccPwd(account);
+        if (i>0){
+            map.put("success","true");
+        }else{
+            map.put("success","false");
+        }
+        return map;
+    }
+    /**
+     * 东,手机号验证
+     * @return
+     */
+    @RequestMapping("/toPhone")
+    @ResponseBody
+    public Map<String,Object> toPhone(String emails){
+        Map<String,Object> map=new HashMap<>();
+        //用户名
+        String Uid = "lvdong";
+        //接口安全秘钥
+        String Key = "d41d8cd98f00b204e980";
+        //手机号码，多个号码如13800000000,13800000001,13800000002
+        String smsMob =emails ;
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        String sui="";
+        for (int i = 0; i <=5 ;i++) {
+            sui+=chars.charAt((int)(Math.random() * 26));
+        }
+        //短信内容
+        String smsText = "找回密码-验证码："+sui;
+        HttpClientUtil client = HttpClientUtil.getInstance();
+        //UTF发送
+        int result = client.sendMsgUtf8(Uid, Key, smsText, smsMob);
+        if(result>0){
+            System.out.println("UTF8成功发送条数=="+result);
+        }else{
+            System.out.println(client.getErrorMsg(result));
+        }
+        map.put("yan",sui);
+        return map;
+    }
+
+    @RequestMapping("/lvSelectByPhoneAid")
+    @ResponseBody
+    public Map<String,Object> lvSelectByPhoneAid(String e,String pwd){
+        Map<String,Object> map=new HashMap<>();
+        UserInfo userInfo = service.lvSelectByPhoneAid(e);
+        Account account=new Account();
+        account.setAid(userInfo.getAccid());
+        account.setPassword(pwd);
+        int i = service.lvUpdateAccPwd(account);
+        if (i>0){
+            map.put("success","true");
+        }else{
+            map.put("success","false");
+        }
+        return map;
+    }
 }

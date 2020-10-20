@@ -34,4 +34,12 @@ public interface LvDongService {
     Account lvSelectByAcc(Integer aid);
     //查询自己的信息
     UserInfo lvSelectByUserInfo(Integer aid);
+    //根据邮箱获取aid
+    UserInfo lvSelectByEamilAid(String e);
+
+    int lvUpdateAccPwd(Account account);
+
+    UserInfo lvSelectByPhoneAid(String e);
+
+
 }
