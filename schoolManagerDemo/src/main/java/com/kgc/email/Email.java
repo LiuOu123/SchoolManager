@@ -53,7 +53,7 @@ public class Email {
 		return bo;
 	}
 	
-	public static String fasong(String email,String user)  {
+	public  String fasong(String email,String user)  {
 		Email e=new Email();
 		String chars = "abcdefghijklmnopqrstuvwxyz";
 		String sui="";
