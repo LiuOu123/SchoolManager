@@ -1,5 +1,7 @@
 package com.kgc.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.Grade;
 import com.kgc.pojo.GradeUser;
 import com.kgc.pojo.Releasee;
@@ -109,6 +111,29 @@ public class LoTeacherHomeController {
         }else{
             map.put("status","false");
         }
+        return map;
+    }
+    @RequestMapping("/teacherChaHomeWork")
+    @ResponseBody
+    public Map<String,Object> TeacherChaHomeWord(HttpSession session,Integer pageNum,Integer pageSize){
+        System.out.println("pageNum"+pageNum);
+        System.out.println("pageSize"+pageSize);
+
+        Map<String,Object> map=new HashMap<>();
+        int aid =(int)session.getAttribute("aid");
+
+        List<GradeUser> gradeUsers = loService.selectByUserIdd(aid);//根据id查找名下有多少个班级
+
+        List<Releasee> releaseesZong=new ArrayList<>();
+        PageInfo<Releasee> releaseePageInfo=null;
+        for(int i=0;i<gradeUsers.size();i++){
+             releaseePageInfo = loService.selectByGradeIdd(pageNum, pageSize, gradeUsers.get(i).getGradeid());
+            for(int j=0;j<releaseePageInfo.getList().size();j++) {
+                releaseesZong.add(releaseePageInfo.getList().get(j));
+            }
+        }
+
+        map.put("data",releaseePageInfo);
         return map;
     }
 }

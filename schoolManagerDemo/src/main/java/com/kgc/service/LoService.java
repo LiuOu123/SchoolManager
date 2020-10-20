@@ -1,9 +1,11 @@
 package com.kgc.service;
 
+import com.github.pagehelper.PageInfo;
 import com.kgc.pojo.Grade;
 import com.kgc.pojo.GradeUser;
 import com.kgc.pojo.Releasee;
 import com.kgc.pojo.Works;
+import com.sun.javafx.image.IntPixelGetter;
 
 import java.util.List;
 
@@ -17,4 +19,5 @@ public interface LoService {
     List<GradeUser> selectByUserIdd(int userID);//根据用户id查找该用户下有哪些班级
     List<Grade> selectByGid(int gid);//根据id查找班级信息
     int insertReleasee(Releasee releasee);//发布作业
+    PageInfo<Releasee> selectByGradeIdd(Integer pageNum,Integer pageSize,int gradeId);//根据班级id查找作业表中相对应的值
 }
