@@ -77,7 +77,7 @@ $(function () {
             var backid=v.backid;
             $.post("lvSelectFriendsInfo",{id:v.aid},function (data) {
                 var $div=$(" <div class=\"friends_box\">\n" +
-                    "                    <div class=\"user_head\"><img src=\"/static/images/head/1.jpg\"/></div>\n" +
+                    "                    <div class=\"user_head\"><img src=\"/static/touxiang/"+data.data.touxiang+"\"/></div>\n" +
                     "                    <div class=\"friends_text\">\n" +
                     "                    <span class=\"user_name\">"+data.data.nickname+"</span>\n" +
                     "                    <span hidden>"+data.data.accid+"</span><span style=\"margin-left:27px \"><button class='tong'>同意</button></span>\n" +
@@ -200,7 +200,6 @@ function cha() {
 //局部刷新
 function xun() {
     time = setInterval(function getoList() {
-
     }, 3000);
 }
 

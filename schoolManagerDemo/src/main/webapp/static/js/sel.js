@@ -19,9 +19,7 @@ function fenye() {
         data:{gid:gid},
         dataType:"json",
         success:function (data) {
-            console.log(data)
             $.each(data.hshselg,function (i,v) {
-                console.log("id"+v.userid)
                 $.ajax({
                     type:"GET",
                     url:"/selinfo",
@@ -29,7 +27,6 @@ function fenye() {
                         pagesize: pageSize,utype:1},
                     dataType:"json",
                     success:function (data2) {
-                        console.log(data2)
                         data1 = data2;
                         $.each(data2.selfenye.list,function (i2,v2) {
                             var $tr = $("<tr><td> <input type='checkbox' name='id' value='1'   lay-skin='primary'></td><td>" + v2.accid + "</td><td>"

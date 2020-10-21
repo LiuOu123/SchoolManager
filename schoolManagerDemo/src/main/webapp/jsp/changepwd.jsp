@@ -29,7 +29,9 @@
 <body class="login-bg">
 
 <div class="login layui-anim layui-anim-up">
-    <div class="message">学生管理系统</div>
+    <a style="margin-left: 360px;margin-top: -30px"  href="javascript:history.back()" >X</a>
+    <div class="message">找回密码</div>
+
     <div id="darkbannerwrap"></div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="#name1" data-toggle="tab">电子邮箱</a></li>

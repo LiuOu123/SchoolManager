@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -318,5 +319,10 @@ public class ChitchatController {
             map.put("success","false");
         }
         return map;
+    }
+    @RequestMapping("/lvTui")
+    public String lvTui(HttpSession session){
+        session.invalidate();
+        return "login";
     }
 }

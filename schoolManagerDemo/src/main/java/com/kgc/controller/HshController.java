@@ -81,7 +81,7 @@ public class HshController {
     }
     @RequestMapping("/hshdoupdate")
     public String doupdate(@Param("uid") Integer uid, @Param("accid") Integer accid, String nikename, Integer age, String phone, String sex, String address, String email, String qianming, MultipartFile touxiang, HttpServletRequest request, HttpSession session){
-        String realPath = session.getServletContext().getRealPath("static/images/uploadfile");
+        String realPath = session.getServletContext().getRealPath("static/touxiang");
         //获取文件名称
         String originalFilename = touxiang.getOriginalFilename();
         //获取文件名称的后缀
@@ -110,7 +110,7 @@ public class HshController {
         Date date1=new Date();
         userInfo1.setModification(date1);
         userInfo1.setUtype(1);
-        userInfo1.setTouxiang("/schoolmanage/static/images/uploadfile/"+fileName);
+        userInfo1.setTouxiang(fileName);
         int hshins = hshService.hshins(userInfo1);
         System.out.println(hshins);
         return "student";
