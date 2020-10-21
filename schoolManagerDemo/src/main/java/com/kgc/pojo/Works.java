@@ -22,6 +22,34 @@ public class Works {
 
     private Integer isverify;
 
+    private Grade grade;
+
+    private UserInfo userInfo;
+
+    public Works() {
+    }
+
+    public Works(Integer wid, Integer isverify) {
+        this.wid = wid;
+        this.isverify = isverify;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
     public Integer getWid() {
         return wid;
     }

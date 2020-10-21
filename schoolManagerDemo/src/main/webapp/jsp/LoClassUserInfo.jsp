@@ -83,53 +83,53 @@
                             <th>操作</th>--%>
                         </thead>
                         <tbody>
-                       <%-- <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary">
-                            </td>
-                            <td>1</td>
-                            <td>admin</td>
-                            <td>18925139194</td>
-                            <td>113664000@qq.com</td>
-                            &lt;%&ndash;<td>超级管理员</td>
-                            <td>2017-01-01 11:11:42</td>&ndash;%&gt;
-                            <td class="td-status">
-                                <span class="layui-btn layui-btn-danger layui-btn-mini">删除</span></td>
-                            &lt;%&ndash;<td class="td-manage">
-                                <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                                    <i class="layui-icon">&#xe601;</i>
-                                </a>
-                                <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe642;</i>
-                                </a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i>
-                                </a>
-                            </td>&ndash;%&gt;
-                        </tr>--%>
+                        <%-- <tr>
+                             <td>
+                                 <input type="checkbox" name="" lay-skin="primary">
+                             </td>
+                             <td>1</td>
+                             <td>admin</td>
+                             <td>18925139194</td>
+                             <td>113664000@qq.com</td>
+                             &lt;%&ndash;<td>超级管理员</td>
+                             <td>2017-01-01 11:11:42</td>&ndash;%&gt;
+                             <td class="td-status">
+                                 <span class="layui-btn layui-btn-danger layui-btn-mini">删除</span></td>
+                             &lt;%&ndash;<td class="td-manage">
+                                 <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
+                                     <i class="layui-icon">&#xe601;</i>
+                                 </a>
+                                 <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
+                                     <i class="layui-icon">&#xe642;</i>
+                                 </a>
+                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                     <i class="layui-icon">&#xe640;</i>
+                                 </a>
+                             </td>&ndash;%&gt;
+                         </tr>--%>
                         </tbody>
                     </table>
                 </div>
-               <%-- <div class="layui-card-body ">
-                    <div class="page">
-                        <div>
-                            <a class="prev" href="javascript:void(0)" onclick="shang()">&lt;&lt;</a>
-                            <a class="num" href="">首页</a>
-                            <a class="num" href="">尾页</a>
-                            <a class="next" href="javascript:void(0)" onclick="wei()">&gt;&gt;</a>
-                        </div>
-                    </div>
-                </div>--%>
+                <%-- <div class="layui-card-body ">
+                     <div class="page">
+                         <div>
+                             <a class="prev" href="javascript:void(0)" onclick="shang()">&lt;&lt;</a>
+                             <a class="num" href="">首页</a>
+                             <a class="num" href="">尾页</a>
+                             <a class="next" href="javascript:void(0)" onclick="wei()">&gt;&gt;</a>
+                         </div>
+                     </div>
+                 </div>--%>
                 <center>
-                <table class="table" width="300" border="1" align="center">
-                    <tr align="center">
-                        <td><a href="javascript:void(0)" onclick="shou()">首页</a></td>
-                        <td><a href="javascript:void(0)" onclick="shang()">上一页</a></td>
-                        <td class="ye">1/1</td>
-                        <td><a href="javascript:void(0)" onclick="xia()">下一页</a></td>
-                        <td><a href="javascript:void(0)" onclick="wei()">尾页</a></td>
-                    </tr>
-                </table>
+                    <table class="table" width="300" border="1" align="center">
+                        <tr align="center">
+                            <td><a href="javascript:void(0)" onclick="shou()">首页</a></td>
+                            <td><a href="javascript:void(0)" onclick="shang()">上一页</a></td>
+                            <td class="ye">1/1</td>
+                            <td><a href="javascript:void(0)" onclick="xia()">下一页</a></td>
+                            <td><a href="javascript:void(0)" onclick="wei()">尾页</a></td>
+                        </tr>
+                    </table>
                 </center>
             </div>
         </div>
@@ -143,28 +143,28 @@
 
     function shou() {
         if (pageInfo.isFirstPage == false) {
-            pageNum=1;
+            pageNum = 1;
             aj();
         }
     }
 
     function shang() {
-        if(pageInfo.hasPreviousPage){
-            pageNum=pageInfo.prePage;
+        if (pageInfo.hasPreviousPage) {
+            pageNum = pageInfo.prePage;
             aj();
         }
     }
 
     function xia() {
-        if(pageInfo.hasNextPage){
-            pageNum=pageInfo.nextPage;
+        if (pageInfo.hasNextPage) {
+            pageNum = pageInfo.nextPage;
             aj();
         }
     }
 
     function wei() {
-        if(pageInfo.isLastPage==false){
-            pageNum=pageInfo.lastPage;
+        if (pageInfo.isLastPage == false) {
+            pageNum = pageInfo.lastPage;
             aj();
         }
     }
@@ -183,22 +183,25 @@
             dataType: "json",
             success: function (result) {
                 $(".bian").remove();
-                    $(".ye").text(result.data.pageNum+"/"+result.data.pages);
-                    pageInfo = result.data;
-                    $.each(result.data.list, function (index, z) {
-                        var tr = $("<tr class='bian'>\n" +
-                            "                            <td>\n" +
-                            "                                <input type='checkbox' name=\"\" lay-skin=\"primary\">\n" +
-                            "                            </td>\n" +
-                            "                            <td>"+z.grade.gname+"</td>\n" +
-                            "                            <td>"+z.reltitle+"</td>\n" +
-                            "                            <td>"+z.relnei+"</td>\n" +
-                            "                            <td>"+date(z.reldate)+"</td>\n" +
-                            "                            <%--<td>超级管理员</td>\n"+
+                $(".ye").text(result.data.pageNum + "/" + result.data.pages);
+                pageInfo = result.data;
+                $.each(result.data.list, function (index, z) {
+                    var tr = $("<tr class='bian'>\n" +
+                        "                            <td>\n" +
+                        "                                <input type='checkbox' name=\"\" lay-skin=\"primary\">\n" +
+                        "                            </td>\n" +
+                        "                            <td onclick=\"xadmin.open('添加用户','/jsp/LoTeacherChaHomeWork.jsp',800,600)\">" + z.grade.gname + "</td>\n" +
+                        "                            <td>" + z.reltitle + "</td>\n" +
+                        "                            <td>" + z.relnei + "</td>\n" +
+                        "                            <td>" + date(z.reldate) + "</td>\n" +
+                        "                            <%--<td>超级管理员</td>\n"+
 "                            <td>2017-01-01 11:11:42</td>--%>\n" +
-                            "                            <td class=\"td-status\">\n" +
-                            "                                <span class=\"layui-btn layui-btn-danger layui-btn-mini\">删除</span></td>\n" +
-                            "                            <%--<td class=\"td-manage\">\n"+
+                        "                            <td class=\"td-status\">\n" +
+                        "                                <span onclick='tiao("+z.rid+")' class=\"layui-btn layui-btn-container layui-btn-mini\">查询</span>" +
+                        "<span class=\"layui-btn layui-btn-danger layui-btn-mini\">删除</span>" +
+                        "</td>\n" +
+
+                        "                            <%--<td class=\"td-manage\">\n"+
 "                                <a onclick=\"member_stop(this,'10001')\" href=\"javascript:;\"  title=\"启用\">\n"+
 "                                    <i class=\"layui-icon\">&#xe601;</i>\n"+
 "                                </a>\n"+
@@ -209,51 +212,63 @@
 "                                    <i class=\"layui-icon\">&#xe640;</i>\n"+
 "                                </a>\n"+
 "                            </td>--%>\n" +
-                            "                        </tr>")
-                        $("#mytable").append(tr)
-                    })
+                        "                        </tr>")
+                    $("#mytable").append(tr)
+                })
             }
         })
     }
+ function tiao(id){
+        //alert(id)
+     $.post("/chuanRelid",{relid:id},function (result) {
+         xadmin.open('添加用户','/jsp/LoTeacherChaHomeWork.jsp',800,600)
+     })
+
+ }
     $(function () {
         aj()
     })
+
     function date(timei) {
         var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
         var myDate = new Date(Date.parse(timei));
-        var myDay=new Date().getDay();
-        var times=timei.substring(0,10);
-        var bo=false;
-        for (var i=myDay-1;i>=0;i--){
+        var myDay = new Date().getDay();
+        var times = timei.substring(0, 10);
+        var bo = false;
+        for (var i = myDay - 1; i >= 0; i--) {
             var day1 = new Date();
-            day1.setTime(day1.getTime()-24*60*60*1000*i);
-            var s1 = day1.getFullYear()+"-" + (day1.getMonth()+1)+"-" + day1.getDate();
-            if (s1==times){
-                bo=true;
+            day1.setTime(day1.getTime() - 24 * 60 * 60 * 1000 * i);
+            var s1 = day1.getFullYear() + "-" + (day1.getMonth() + 1) + "-" + day1.getDate();
+            if (s1 == times) {
+                bo = true;
                 break;
             }
         }
         var xingQi;
-        if (bo==false){
-            xingQi=timei.substring(0,10);
-        }else if(new Date().getDate()==new Date(timei).getDate()){
-            var hours=parseInt(new Date(timei).getHours())+1;
-            if (hours>0&&hours<=6){
-                xingQi="凌晨"+timei.substring(11,16);;
-            }else if(hours>6&&hours<=10){
-                xingQi="早上"+timei.substring(11,16);;
-            }else if(hours>10&&hours<=14){
-                xingQi="中午"+timei.substring(11,16);;
-            }else if(hours>14&&hours<=19){
-                xingQi="下午"+timei.substring(11,16);;
-            }else if(hours>19&&hours<=23){
-                xingQi="晚上"+timei.substring(11,16);;
+        if (bo == false) {
+            xingQi = timei.substring(0, 10);
+        } else if (new Date().getDate() == new Date(timei).getDate()) {
+            var hours = parseInt(new Date(timei).getHours()) + 1;
+            if (hours > 0 && hours <= 6) {
+                xingQi = "凌晨" + timei.substring(11, 16);
+                ;
+            } else if (hours > 6 && hours <= 10) {
+                xingQi = "早上" + timei.substring(11, 16);
+                ;
+            } else if (hours > 10 && hours <= 14) {
+                xingQi = "中午" + timei.substring(11, 16);
+                ;
+            } else if (hours > 14 && hours <= 19) {
+                xingQi = "下午" + timei.substring(11, 16);
+                ;
+            } else if (hours > 19 && hours <= 23) {
+                xingQi = "晚上" + timei.substring(11, 16);
+                ;
             }
-        }else if(parseInt(new Date().getDate())-1==new Date(timei).getDate()){
-            xingQi="昨天";
-        } else if(bo){
-
-            xingQi=weekDay[myDate.getDay()];
+        } else if (parseInt(new Date().getDate()) - 1 == new Date(timei).getDate()) {
+            xingQi = "昨天";
+        } else if (bo) {
+            xingQi = weekDay[myDate.getDay()];
         }
         return xingQi;
     }

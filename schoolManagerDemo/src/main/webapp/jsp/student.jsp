@@ -297,10 +297,15 @@
                     <cite>教员管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
-                    <li>
+                    <%--<li>
                         <a onclick="xadmin.add_tab('notice 通知控件','https://fly.layui.com/extend/notice/')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>notice 通知控件</cite></a>
+                    </li>--%>
+                    <li>
+                        <a onclick="xadmin.add_tab('发布作业','/jsp/LoClassUserInfo.jsp')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>发布作业</cite></a>
                     </li>
                 </ul>
             </li>

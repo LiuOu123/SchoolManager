@@ -2,10 +2,7 @@ package com.kgc.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kgc.mapper.GradeMapper;
-import com.kgc.mapper.GradeUserMapper;
-import com.kgc.mapper.ReleaseeMapper;
-import com.kgc.mapper.WorksMapper;
+import com.kgc.mapper.*;
 import com.kgc.pojo.*;
 import com.kgc.service.LoService;
 import org.springframework.stereotype.Service;
@@ -26,7 +23,8 @@ public class LoServiceImpl implements LoService {
     WorksMapper worksMapper;
     @Resource
     LoService loService;
-
+    @Resource
+    UserInfoMapper userInfoMapper;
     @Override
     public List<Grade> selectByGradeId(int gradeId) {
         GradeExample example=new GradeExample();
@@ -124,5 +122,35 @@ public class LoServiceImpl implements LoService {
         }
         PageInfo<Releasee> pageInfo = new PageInfo<>(releasees);
         return pageInfo;
+    }
+
+    @Override
+    public List<Works> selecyByRelId(int id) {
+        WorksExample example=new WorksExample();
+        WorksExample.Criteria criteria = example.createCriteria();
+        criteria.andRelidEqualTo(id);
+        List<Works> works = worksMapper.selectByExample(example);
+        for(int i=0;i<works.size();i++){
+            List<Grade> grades = loService.selectByGid(works.get(i).getGradeid());
+            works.get(i).setGrade(grades.get(grades.size()-1));
+            List<UserInfo> userInfos = loService.selectByAccid(works.get(i).getUserid());
+            works.get(i).setUserInfo(userInfos.get(userInfos.size()-1));
+        }
+        return works;
+    }
+
+    @Override
+    public List<UserInfo> selectByAccid(int addid) {
+        UserInfoExample example=new UserInfoExample();
+        UserInfoExample.Criteria criteria = example.createCriteria();
+        criteria.andAccidEqualTo(addid);
+        List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
+        return userInfos;
+    }
+
+    @Override
+    public int updateWorksIsverify(Works works) {
+        int i = worksMapper.updateByPrimaryKeySelective(works);
+        return i;
     }
 }
