@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -21,8 +20,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-  
-  
+import org.apache.http.HttpEntity;
+
 public class HttpClientUtil {  
     private RequestConfig requestConfig = RequestConfig.custom()  
             .setSocketTimeout(15000)  
@@ -78,7 +77,7 @@ public class HttpClientUtil {
     private String sendHttpPost(HttpPost httpPost,String reponseType) {  
         CloseableHttpClient httpClient = null;  
         CloseableHttpResponse response = null;  
-        HttpEntity entity = null;  
+        HttpEntity entity = null;
         String responseContent = null;  
         try {  
             // 创建默认的httpClient实例.  
@@ -86,7 +85,7 @@ public class HttpClientUtil {
             httpPost.setConfig(requestConfig);  
             // 执行请求  
             response = httpClient.execute(httpPost);  
-            entity = response.getEntity();  
+            entity = response.getEntity();
             responseContent = EntityUtils.toString(entity, reponseType);  
         } catch (Exception e) {  
             e.printStackTrace();  
@@ -219,12 +218,12 @@ public class HttpClientUtil {
         try {  
             // 创建默认的httpClient实例.  
             PublicSuffixMatcher publicSuffixMatcher = PublicSuffixMatcherLoader.load(new URL(httpGet.getURI().toString()));  
-            DefaultHostnameVerifier hostnameVerifier = new DefaultHostnameVerifier(publicSuffixMatcher);  
+            DefaultHostnameVerifier hostnameVerifier = new DefaultHostnameVerifier(publicSuffixMatcher);
             httpClient = HttpClients.custom().setSSLHostnameVerifier(hostnameVerifier).build();  
             httpGet.setConfig(requestConfig);  
             // 执行请求  
-            response = httpClient.execute(httpGet);  
-            entity = response.getEntity();  
+            response = httpClient.execute(httpGet);
+            entity = response.getEntity();
             responseContent = EntityUtils.toString(entity, "UTF-8");  
         } catch (Exception e) {  
             e.printStackTrace();  
