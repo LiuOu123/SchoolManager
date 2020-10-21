@@ -106,6 +106,7 @@ public class DhnLoginController {
         GradeUser gradeUsers = dhnService.selGradeId(userid);
         //班级id
         Integer gradeid = gradeUsers.getGradeid();
+        session.setAttribute("gradeid", gradeid);
         int PageSize = 3;
         PageHelper.startPage(Num, PageSize);
         List<Releasee> selwork = dhnService.selwork(gradeid, Num, PageSize);
@@ -138,7 +139,7 @@ public class DhnLoginController {
     }
 
     @RequestMapping("/tijiaozuoye")
-    public String tijiao(HttpSession session, MultipartFile wornei, Works works) {
+    public String tijiao(HttpSession session, MultipartFile wornei1, Works works) {
         Integer gradeid = (Integer) session.getAttribute("gradeid");
         Integer userid = (Integer) session.getAttribute("userid");
         Integer rid = (Integer) session.getAttribute("rid");
@@ -146,12 +147,12 @@ public class DhnLoginController {
         works.setUserid(userid);
         works.setRelid(rid);
         String realPath = session.getServletContext().getRealPath("static/image");
-        String originalFilename = wornei.getOriginalFilename();
+        String originalFilename = wornei1.getOriginalFilename();
         String extension = FilenameUtils.getExtension(originalFilename);
         String newName = System.currentTimeMillis() + (RandomUtils.nextInt(10000)) + "_." + extension;
         File file = new File(realPath, newName);
         try {
-            wornei.transferTo(file);
+            wornei1.transferTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -164,8 +165,9 @@ public class DhnLoginController {
         }
         return "redirect:/selzuoye";
     }
+
     @RequestMapping("/toChange")
-    public String toChange(){
+    public String toChange() {
         return "changepwd";
     }
 }
