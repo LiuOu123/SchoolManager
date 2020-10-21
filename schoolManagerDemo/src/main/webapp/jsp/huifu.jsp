@@ -75,7 +75,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${list}" var="l">
+                        <c:forEach items="${list.list}" var="l">
                             <tr>
                                 <td>${worktitle}</td>
                                 <td>${l.replynei}</td>

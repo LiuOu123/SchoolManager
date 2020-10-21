@@ -42,7 +42,7 @@
                         $(".tablehao").append("<tr>\n" +
                             "                <td>\n" +
                             "                    <div class=\"user_head\"><input hidden value=' + reslutHao.data2.haoid + '>\n" +
-                            "                        <img src=\"/static/images/head/15.jpg\"/></div>\n" +
+                            "                        <img src=\"/static/touxiang/"+data.success.touxiang+"\"/></div>\n" +
                             "                    <div class=\"user_text\"><p class=\"user_name\">" + data.success.nickname + "</p>\n" +
                             "                        <p class=\"user_message\">"+ data.success.qianming+ "</p></div>\n" +
                             "                    <div class=\"user_time\"><span hidden>"+$(".aid").val()+"</span><span hidden>"+data.success.accid+"</span><button class='tianjia'>添加</button></div>\n" +

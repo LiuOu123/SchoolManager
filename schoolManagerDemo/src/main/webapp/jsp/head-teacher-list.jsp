@@ -39,13 +39,11 @@
             dataType:"json",
             success:function (data) {
                 $.each(data.selsum,function (i,v) {
-                    console.log(v)
                       var $tr=$("<tr><td>"+(i+1)+"</td><td hidden>"+v.gradeid+"</td><td>"+v.gname+"</td><td>"+v.personsum+"</td><td><button class='layui-btn layui-btn-normal layui-btn-mini cha '>查询</button></td></tr>");
                       $(".table-a").append($tr);
                 })
                 $(".cha").click(function () {
                     var id = $(this).parent().prev().prev().prev().text();
-                    alert(id)
                     location.href="/chuangid?id="+id+"";
                 })
             }

@@ -164,4 +164,8 @@ public class DhnLoginController {
         }
         return "redirect:/selzuoye";
     }
+    @RequestMapping("/toChange")
+    public String toChange(){
+        return "changepwd";
+    }
 }

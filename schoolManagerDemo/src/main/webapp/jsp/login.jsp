@@ -36,8 +36,12 @@
         <hr class="hr15">
         <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
         <hr class="hr15">
+
+      <a href="/toChange" style="margin-left: 260px"> 忘记密码？</a><hr class="hr15">
         <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
         <hr class="hr20" >
+
+
         <span style="color: red">${msg}</span>
     </form>
 </div>
