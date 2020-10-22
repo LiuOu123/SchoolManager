@@ -2,9 +2,8 @@ package com.kgc.mapper;
 
 import com.kgc.pojo.Works;
 import com.kgc.pojo.WorksExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface WorksMapper {
     int countByExample(WorksExample example);

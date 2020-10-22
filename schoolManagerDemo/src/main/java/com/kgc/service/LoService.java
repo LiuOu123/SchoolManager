@@ -20,4 +20,5 @@ public interface LoService {
     List<Works> selecyByRelId(int id);//根据作业id查找提交信息
     List<UserInfo> selectByAccid(int addid);//根据用户id查找userinfo信息
     int updateWorksIsverify(Works works);//根据works对象修改是否审核
+    int insertReply(Reply reply);//插入作业回复
 }

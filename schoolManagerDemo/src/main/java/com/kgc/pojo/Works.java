@@ -16,11 +16,12 @@ public class Works {
     private String wortitle;
 
     private String wornei;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date wordate;
 
     private Integer isverify;
+
+    private String worimg;
 
     private Grade grade;
 
@@ -34,20 +35,20 @@ public class Works {
         this.isverify = isverify;
     }
 
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
-
     public Grade getGrade() {
         return grade;
     }
 
     public void setGrade(Grade grade) {
         this.grade = grade;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public Integer getWid() {
@@ -112,5 +113,13 @@ public class Works {
 
     public void setIsverify(Integer isverify) {
         this.isverify = isverify;
+    }
+
+    public String getWorimg() {
+        return worimg;
+    }
+
+    public void setWorimg(String worimg) {
+        this.worimg = worimg == null ? null : worimg.trim();
     }
 }

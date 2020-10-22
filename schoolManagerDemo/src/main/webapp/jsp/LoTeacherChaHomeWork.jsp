@@ -70,7 +70,8 @@
                     "        <td>" + z.wornei + "</td>\n" +
                     "        <td>" + date(z.wordate) + "</td>\n" +
                     "        <td id='" + z.wid + "'>" + z.isverify + "</td>\n" +
-                    "        <td><span onclick='shenhe(" + z.wid + ")' class=\"layui-btn layui-btn-container layui-btn-mini\">审核</span></td>\n" +
+                    "        <td><span onclick='shenhe(" + z.wid + ")' class=\"layui-btn layui-btn-container layui-btn-mini\">审核</span>\n" +
+                    "        <span onclick='tiao("+z.wid+")' class=\"layui-btn layui-btn-primary layui-btn-mini\">回复</span></td>\n" +
                     "    </tr>");
                 $("#mytable").append(tr);
                 if (z.isverify == 0) {
@@ -80,6 +81,11 @@
                 }
             })
         }, "json")
+    }
+    function tiao(wid) {
+         $.post("/chuanWid",{wid:wid},function (result) {
+             xadmin.open('发送回复', '/jsp/LoTeacherAddHuiFU.jsp', 600, 400)
+         })
     }
     function date(timei) {
         var weekDay = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];

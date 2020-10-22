@@ -60,19 +60,19 @@
                     </form>
                 </div>
                 <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除
-                    </button>
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','/jsp/LoAddHomeWork.jsp',600,400)"><i
-                            class="layui-icon"></i>添加
+                    <%--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除
+                    </button>--%>
+                    <button class="layui-btn" onclick="xadmin.open('发布作业','/jsp/LoAddHomeWork.jsp',600,400)"><i
+                            class="layui-icon"></i>发布作业
                     </button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form" id="mytable">
                         <thead>
                         <tr>
-                            <th>
+                            <%--<th>
                                 <input type="checkbox" name="" lay-skin="primary">
-                            </th>
+                            </th>--%>
                             <th>班级</th>
                             <th>标题</th>
                             <th>作业内容</th>
@@ -200,9 +200,6 @@
                 pageInfo = result.data;
                 $.each(result.data.list, function (index, z) {
                     var tr = $("<tr class='bian'>\n" +
-                        "                            <td>\n" +
-                        "                                <input type='checkbox' name=\"\" lay-skin=\"primary\">\n" +
-                        "                            </td>\n" +
                         "                            <td onclick=\"xadmin.open('查看作业提交情况','/jsp/LoTeacherChaHomeWork.jsp',800,600)\">" + z.grade.gname + "</td>\n" +
                         "                            <td>" + z.reltitle + "</td>\n" +
                         "                            <td>" + z.relnei + "</td>\n" +
@@ -235,7 +232,7 @@
     function tiao(id) {
         //alert(id)
         $.post("/chuanRelid", {relid: id}, function (result) {
-            xadmin.open('查看作业提交情况', '/jsp/LoTeacherChaHomeWork.jsp', 800, 600)
+            xadmin.open('查看作业提交情况', '/jsp/LoTeacherChaHomeWork.jsp', 1000, 600)
         })
 
     }

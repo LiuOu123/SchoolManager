@@ -7,6 +7,14 @@ public class Reply {
 
     private String replynei;
 
+    public Reply() {
+    }
+
+    public Reply(Integer worid, String replynei) {
+        this.worid = worid;
+        this.replynei = replynei;
+    }
+
     public Integer getRid() {
         return rid;
     }

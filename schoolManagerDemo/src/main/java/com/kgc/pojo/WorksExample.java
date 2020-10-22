@@ -604,6 +604,76 @@ public class WorksExample {
             addCriterion("isverify not between", value1, value2, "isverify");
             return (Criteria) this;
         }
+
+        public Criteria andWorimgIsNull() {
+            addCriterion("worimg is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgIsNotNull() {
+            addCriterion("worimg is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgEqualTo(String value) {
+            addCriterion("worimg =", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgNotEqualTo(String value) {
+            addCriterion("worimg <>", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgGreaterThan(String value) {
+            addCriterion("worimg >", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgGreaterThanOrEqualTo(String value) {
+            addCriterion("worimg >=", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgLessThan(String value) {
+            addCriterion("worimg <", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgLessThanOrEqualTo(String value) {
+            addCriterion("worimg <=", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgLike(String value) {
+            addCriterion("worimg like", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgNotLike(String value) {
+            addCriterion("worimg not like", value, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgIn(List<String> values) {
+            addCriterion("worimg in", values, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgNotIn(List<String> values) {
+            addCriterion("worimg not in", values, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgBetween(String value1, String value2) {
+            addCriterion("worimg between", value1, value2, "worimg");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorimgNotBetween(String value1, String value2) {
+            addCriterion("worimg not between", value1, value2, "worimg");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

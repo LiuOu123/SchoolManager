@@ -2,10 +2,8 @@ package com.kgc.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kgc.pojo.Grade;
-import com.kgc.pojo.GradeUser;
-import com.kgc.pojo.Releasee;
-import com.kgc.pojo.Works;
+import com.kgc.mapper.ReplyMapper;
+import com.kgc.pojo.*;
 import com.kgc.service.LoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -166,6 +164,25 @@ public class LoTeacherHomeController {
         Map<String, Object> map=new HashMap<>();
         Works works=new Works(id,2);
         int i = loService.updateWorksIsverify(works);
+        if(i>0){
+            map.put("status","true");
+        }else{
+            map.put("status","false");
+        }
+        return map;
+    }
+    @RequestMapping("/chuanWid")
+    @ResponseBody
+    public Map<String,Object> chuanWid(int wid,HttpSession session){
+        Map<String,Object> map=new HashMap<>();
+        session.setAttribute("wid",wid);
+        return map;
+    }
+    @RequestMapping("/teacherAddHuiFu")
+    @ResponseBody
+    public Map<String,Object> teacherAddHuiFu(Reply reply){
+        Map<String,Object> map=new HashMap<>();
+        int i = loService.insertReply(reply);
         if(i>0){
             map.put("status","true");
         }else{

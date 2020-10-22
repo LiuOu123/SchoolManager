@@ -6,6 +6,7 @@ import com.kgc.mapper.*;
 import com.kgc.pojo.*;
 import com.kgc.service.LoService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class LoServiceImpl implements LoService {
     LoService loService;
     @Resource
     UserInfoMapper userInfoMapper;
+    @Resource
+    ReplyMapper replyMapper;
     @Override
     public List<Grade> selectByGradeId(int gradeId) {
         GradeExample example=new GradeExample();
@@ -151,6 +154,12 @@ public class LoServiceImpl implements LoService {
     @Override
     public int updateWorksIsverify(Works works) {
         int i = worksMapper.updateByPrimaryKeySelective(works);
+        return i;
+    }
+
+    @Override
+    public int insertReply(Reply reply) {
+        int i = replyMapper.insertSelective(reply);
         return i;
     }
 }
