@@ -121,15 +121,28 @@
                      </div>
                  </div>--%>
                 <center>
-                    <table class="table" width="300" border="1" align="center">
+                    <%--<table class="table" width="300" border="1" align="center">
                         <tr align="center">
-                            <td><a href="javascript:void(0)" onclick="shou()">首页</a></td>
+                            <td>
+                                <a href="javascript:void(0)" onclick="shou()">首页</a>
+                            </td>
                             <td><a href="javascript:void(0)" onclick="shang()">上一页</a></td>
                             <td class="ye">1/1</td>
                             <td><a href="javascript:void(0)" onclick="xia()">下一页</a></td>
                             <td><a href="javascript:void(0)" onclick="wei()">尾页</a></td>
                         </tr>
-                    </table>
+                    </table>--%>
+                    <div class="layui-card-body ">
+                        <div class="page">
+                            <div>
+                                <a class="prev current" href="javascript:void(0)" onclick="shang()">&lt;&lt;</a>
+                                <a class="num" href="javascript:void(0)" onclick="shou()">首页</a>
+                                <span class="ye current">1/1</span>
+                                <a class="num" href="javascript:void(0)" onclick="wei()">尾页</a>
+                                <a class="next current" href="javascript:void(0)" onclick="xia()">&gt;&gt;</a>
+                            </div>
+                        </div>
+                    </div>
                 </center>
             </div>
         </div>
@@ -197,7 +210,7 @@
                         "                            <%--<td>超级管理员</td>\n"+
 "                            <td>2017-01-01 11:11:42</td>--%>\n" +
                         "                            <td class=\"td-status\">\n" +
-                        "                                <span onclick='tiao("+z.rid+")' class=\"layui-btn layui-btn-container layui-btn-mini\">查询</span>" +
+                        "                                <span onclick='tiao(" + z.rid + ")' class=\"layui-btn layui-btn-container layui-btn-mini\">查询</span>" +
                         "<span class=\"layui-btn layui-btn-danger layui-btn-mini\">删除</span>" +
                         "</td>\n" +
 
@@ -218,13 +231,15 @@
             }
         })
     }
- function tiao(id){
-        //alert(id)
-     $.post("/chuanRelid",{relid:id},function (result) {
-         xadmin.open('查看作业提交情况','/jsp/LoTeacherChaHomeWork.jsp',800,600)
-     })
 
- }
+    function tiao(id) {
+        //alert(id)
+        $.post("/chuanRelid", {relid: id}, function (result) {
+            xadmin.open('查看作业提交情况', '/jsp/LoTeacherChaHomeWork.jsp', 800, 600)
+        })
+
+    }
+
     $(function () {
         aj()
     })
