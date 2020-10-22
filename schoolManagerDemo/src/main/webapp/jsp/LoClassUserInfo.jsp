@@ -190,7 +190,7 @@
                         "                            <td>\n" +
                         "                                <input type='checkbox' name=\"\" lay-skin=\"primary\">\n" +
                         "                            </td>\n" +
-                        "                            <td onclick=\"xadmin.open('添加用户','/jsp/LoTeacherChaHomeWork.jsp',800,600)\">" + z.grade.gname + "</td>\n" +
+                        "                            <td onclick=\"xadmin.open('查看作业提交情况','/jsp/LoTeacherChaHomeWork.jsp',800,600)\">" + z.grade.gname + "</td>\n" +
                         "                            <td>" + z.reltitle + "</td>\n" +
                         "                            <td>" + z.relnei + "</td>\n" +
                         "                            <td>" + date(z.reldate) + "</td>\n" +
@@ -221,7 +221,7 @@
  function tiao(id){
         //alert(id)
      $.post("/chuanRelid",{relid:id},function (result) {
-         xadmin.open('添加用户','/jsp/LoTeacherChaHomeWork.jsp',800,600)
+         xadmin.open('查看作业提交情况','/jsp/LoTeacherChaHomeWork.jsp',800,600)
      })
 
  }

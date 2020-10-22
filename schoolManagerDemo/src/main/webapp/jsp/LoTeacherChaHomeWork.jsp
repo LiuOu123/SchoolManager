@@ -70,7 +70,7 @@
                     "        <td>" + z.wornei + "</td>\n" +
                     "        <td>" + z.wordate + "</td>\n" +
                     "        <td id='" + z.wid + "'>" + z.isverify + "</td>\n" +
-                    "        <td><span onclick='shenhe(" + z.wid + ")' class=\"layui-btn layui-btn-container layui-btn-mini\">查询</span></td>\n" +
+                    "        <td><span onclick='shenhe(" + z.wid + ")' class=\"layui-btn layui-btn-container layui-btn-mini\">审核</span></td>\n" +
                     "    </tr>");
                 $("#mytable").append(tr);
                 if (z.isverify == 0) {
