@@ -302,6 +302,11 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>notice 通知控件</cite></a>
                     </li>--%>
+                        <li>
+                            <a onclick="xadmin.add_tab('数据统计','/jsp/ttongji.jsp')">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>数据统计</cite></a>
+                        </li>
                     <li>
                         <a onclick="xadmin.add_tab('发布作业','/jsp/LoClassUserInfo.jsp')">
                             <i class="iconfont">&#xe6a7;</i>

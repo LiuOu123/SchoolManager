@@ -49,19 +49,37 @@
             <button  class="layui-btn" id="add" onclick="add()">
                 发送
             </button>
+            <button  class="layui-btn layui-btn-primary" id="fo" onclick="ci()">
+                发送
+            </button>
         </div>
 
     </div>
 </div>
 <script type="text/javascript">
+    $(function () {
+          $("#fo").hide();
+    })
+    function ci() {
+          alert("您已经发送成功 请勿重复发送")
+    }
 function add() {
  var nei=$("#neirong").val();
  if(nei==""){
      alert("内容不能为空")
      return
  }else{
-
-     $.post("/teacherAddHuiFu",)
+    var neirong=$("#neirong").val();
+     $.post("/teacherAddHuiFu",{neirong:neirong},function (result) {
+          if(result.status=="true"){
+              alert("回复成功")
+             /* $("#add").attr("disabled",true);*/
+              $("#add").hide();
+              $("#fo").show();
+          }else{
+              alert("回复失败")
+          }
+     },"json")
  }
 }
 </script>

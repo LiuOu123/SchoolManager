@@ -180,8 +180,10 @@ public class LoTeacherHomeController {
     }
     @RequestMapping("/teacherAddHuiFu")
     @ResponseBody
-    public Map<String,Object> teacherAddHuiFu(Reply reply){
+    public Map<String,Object> teacherAddHuiFu(String neirong,HttpSession session){
         Map<String,Object> map=new HashMap<>();
+        int wid = (int)session.getAttribute("wid");
+        Reply reply=new Reply(wid,neirong);
         int i = loService.insertReply(reply);
         if(i>0){
             map.put("status","true");

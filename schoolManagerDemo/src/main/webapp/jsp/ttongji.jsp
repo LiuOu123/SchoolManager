@@ -14,7 +14,8 @@
     <title>欢迎页面-X-admin2.2</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
     <link rel="stylesheet" href="../static/css/font.css">
     <link rel="stylesheet" href="../static/css/xadmin.css">
     <script src="../static/lib/layui/layui.js" charset="utf-8"></script>
@@ -34,14 +35,14 @@
                 <div class="layui-card-header">最近七次学生作业情况
                     <c:forEach items="${banList}" var="l">
                         &nbsp;&nbsp;&nbsp;
-                        <button class="layui-btn-primary bantong"  style="width: 80px">${l.gname}</button>
+                        <button class="layui-btn-primary bantong" style="width: 80px">${l.gname}</button>
                     </c:forEach>
-<script type="text/javascript">
-$(".bantong").click(function () {
-var banji=$(this).text();
-alert(banji+${aid});
-})
-</script>
+                    <script type="text/javascript">
+                        $(".bantong").click(function () {
+                            var banji = $(this).text();
+                            alert(banji +${aid});
+                        })
+                    </script>
                 </div>
                 <div class="layui-card-body" style="min-height: 280px;">
                     <div id="main1" class="layui-col-sm12" style="height: 300px;"></div>
@@ -51,7 +52,7 @@ alert(banji+${aid});
         </div>
         <div class="layui-col-sm12 layui-col-md6">
             <div class="layui-card">
-                <div class="layui-card-header">最新一周PV/UV量</div>
+                <div class="layui-card-header">最新一周成绩差</div>
                 <div class="layui-card-body" style="min-height: 280px;">
                     <div id="main2" class="layui-col-sm12" style="height: 300px;"></div>
 
@@ -99,13 +100,13 @@ alert(banji+${aid});
         },
         xAxis: {
             type: 'category',
-            data: ['一','二','三','四','五','六','七']
+            data: ['一', '二', '三', '四', '五', '六', '七']
         },
         yAxis: {
             type: 'value'
         },
         series: [{
-            name:'提交人数(作业标题)',
+            name: '提交人数(作业标题)',
             data: [${ci1}, ${ci2}, ${ci3}, ${ci4}, ${ci5}, ${ci6}, ${ci7}],
             type: 'line',
             smooth: true
@@ -121,7 +122,7 @@ alert(banji+${aid});
 
     // 指定图表的配置项和数据
     var option = {
-        tooltip : {
+        tooltip: {
             trigger: 'axis',
             axisPointer: {
                 type: 'cross',
@@ -137,31 +138,31 @@ alert(banji+${aid});
             bottom: '10%',
             containLabel: true
         },
-        xAxis : [
+        xAxis: [
             {
-                type : 'category',
-                boundaryGap : false,
-                data : ['周一','周二','周三','周四','周五','周六','周日']
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
             }
         ],
-        yAxis : [
+        yAxis: [
             {
-                type : 'value'
+                type: 'value'
             }
         ],
-        series : [
+        series: [
             {
-                name:'PV',
-                type:'line',
+                name: 'PV',
+                type: 'line',
                 areaStyle: {normal: {}},
-                data:[120, 132, 101, 134, 90, 230, 210],
+                data: [120, 132, 101, 134, 90, 230, 210],
                 smooth: true
             },
             {
-                name:'UV',
-                type:'line',
+                name: 'UV',
+                type: 'line',
                 areaStyle: {normal: {}},
-                data:[45, 182, 191, 234, 290, 330, 310],
+                data: [145, 182, 191, 234, 290, 330, 310],
                 smooth: true,
 
             }
@@ -178,27 +179,27 @@ alert(banji+${aid});
 
     // 指定图表的配置项和数据
     var option = {
-        tooltip : {
+        tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {
             orient: 'vertical',
             left: 'left',
-            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
         },
-        series : [
+        series: [
             {
                 name: '访问来源',
                 type: 'pie',
-                radius : '55%',
+                radius: '55%',
                 center: ['50%', '60%'],
-                data:[
-                    {value:335, name:'直接访问'},
-                    {value:310, name:'邮件营销'},
-                    {value:234, name:'联盟广告'},
-                    {value:135, name:'视频广告'},
-                    {value:1548, name:'搜索引擎'}
+                data: [
+                    {value: 335, name: '直接访问'},
+                    {value: 310, name: '邮件营销'},
+                    {value: 234, name: '联盟广告'},
+                    {value: 135, name: '视频广告'},
+                    {value: 1548, name: '搜索引擎'}
                 ],
                 itemStyle: {
                     emphasis: {
@@ -212,7 +213,6 @@ alert(banji+${aid});
     };
 
 
-
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 
@@ -221,14 +221,14 @@ alert(banji+${aid});
 
     // 指定图表的配置项和数据
     var option = {
-        tooltip : {
+        tooltip: {
             formatter: "{a} <br/>{b} : {c}%"
         },
         series: [
             {
                 name: '硬盘使用量',
                 type: 'gauge',
-                detail: {formatter:'{value}%'},
+                detail: {formatter: '{value}%'},
                 data: [{value: 88, name: '已使用'}]
             }
         ]
@@ -238,7 +238,7 @@ alert(banji+${aid});
 </script>
 <script>
     var _hmt = _hmt || [];
-    (function() {
+    (function () {
         var hm = document.createElement("script");
         hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
         var s = document.getElementsByTagName("script")[0];
