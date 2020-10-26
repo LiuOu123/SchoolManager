@@ -35,6 +35,7 @@
         <td>用户</td>
         <td>标题</td>
         <td>内容</td>
+        <td>图片</td>
         <td>提交时间</td>
         <td>审核状态</td>
         <td>操作</td>
@@ -46,17 +47,24 @@
     })
 
     function shenhe(id) {
-        var flag = confirm("确定要审核该作业吗？")
-        if (flag) {
-            $.post("/teacherShenChaHomeWork", {id: id}, function (result) {
-                if (result.status == "true") {
-                    alert("审核成功")
-                    chushi()
-                } else {
-                    alert("审核失败")
-                }
-            }, "json")
+        //alert()
+        var zhi=$("#"+id).text()
+        if(zhi=="已审核"){
+            alert("该作业已经审核 请勿重复审核");
+        }else{
+            var flag = confirm("确定要审核该作业吗？")
+            if (flag) {
+                $.post("/teacherShenChaHomeWork", {id: id}, function (result) {
+                    if (result.status == "true") {
+                        alert("审核成功")
+                        chushi()
+                    } else {
+                        alert("审核失败")
+                    }
+                }, "json")
+            }
         }
+
     }
 
     function chushi() {
@@ -68,6 +76,7 @@
                     "        <td>" + z.userInfo.nickname + "</td>\n" +
                     "        <td>" + z.wortitle + "</td>\n" +
                     "        <td>" + z.wornei + "</td>\n" +
+                    "        <td><img src='/static/homeworkpicture/"+z.worimg+"'></td>\n" +
                     "        <td>" + date(z.wordate) + "</td>\n" +
                     "        <td id='" + z.wid + "'>" + z.isverify + "</td>\n" +
                     "        <td><span onclick='shenhe(" + z.wid + ")' class=\"layui-btn layui-btn-container layui-btn-mini\">审核</span>\n" +
