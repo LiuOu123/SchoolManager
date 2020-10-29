@@ -27,7 +27,36 @@ public class Works {
 
     private UserInfo userInfo;
 
+    @Override
+    public String toString() {
+        return "Works{" +
+                "wid=" + wid +
+                ", gradeid=" + gradeid +
+                ", userid=" + userid +
+                ", relid=" + relid +
+                ", wortitle='" + wortitle + '\'' +
+                ", wornei='" + wornei + '\'' +
+                ", wordate=" + wordate +
+                ", isverify=" + isverify +
+                ", worimg='" + worimg + '\'' +
+                ", grade=" + grade +
+                ", userInfo=" + userInfo +
+                '}';
+    }
+
     public Works() {
+    }
+
+    public Works(Integer wid, Integer gradeid, Integer userid, Integer relid, String wortitle, String wornei, Date wordate, Integer isverify, String worimg) {
+        this.wid = wid;
+        this.gradeid = gradeid;
+        this.userid = userid;
+        this.relid = relid;
+        this.wortitle = wortitle;
+        this.wornei = wornei;
+        this.wordate = wordate;
+        this.isverify = isverify;
+        this.worimg = worimg;
     }
 
     public Works(Integer wid, Integer isverify) {

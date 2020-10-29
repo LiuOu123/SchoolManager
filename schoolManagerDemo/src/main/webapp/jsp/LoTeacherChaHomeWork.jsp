@@ -41,6 +41,17 @@
         <td>操作</td>
     </tr>
 </table>
+<%--<span style="position: absolute; right: 10px" class="layui-btn layui-btn-container layui-btn-mini">导出Excel</span>--%>
+<script type="text/javascript">
+    function download(){
+        var url="download_excel?id=${relid}&name=学生作业提交情况";
+        window.open(url);
+    }
+</script>
+<body>
+<form action="">
+    <input type="button" style="position: absolute; right: 10px" class="layui-btn layui-btn-container layui-btn-mini" value="报表导出" onclick="download()"/>
+</form>
 <script type="text/javascript">
     $(function () {
         chushi();

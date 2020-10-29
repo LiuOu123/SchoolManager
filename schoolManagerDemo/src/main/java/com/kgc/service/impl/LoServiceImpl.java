@@ -162,4 +162,10 @@ public class LoServiceImpl implements LoService {
         int i = replyMapper.insertSelective(reply);
         return i;
     }
+
+    @Override
+    public Releasee selectByRid(int rid) {
+        Releasee releasee = releaseeMapper.selectByPrimaryKey(rid);
+        return releasee;
+    }
 }

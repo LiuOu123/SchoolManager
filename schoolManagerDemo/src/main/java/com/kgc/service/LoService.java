@@ -21,4 +21,5 @@ public interface LoService {
     List<UserInfo> selectByAccid(int addid);//根据用户id查找userinfo信息
     int updateWorksIsverify(Works works);//根据works对象修改是否审核
     int insertReply(Reply reply);//插入作业回复
+    Releasee selectByRid(int rid);//查询releasee表中rid符合数据的值
 }
