@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -139,7 +140,7 @@ public class DhnLoginController {
     }
 
     @RequestMapping("/tijiaozuoye")
-    public String tijiao(HttpSession session, MultipartFile wornei1, Works works) {
+    public String tijiao(HttpSession session, MultipartFile worimg1, Works works) {
         Integer gradeid = (Integer) session.getAttribute("gradeid");
         Integer userid = (Integer) session.getAttribute("userid");
         Integer rid = (Integer) session.getAttribute("rid");
@@ -147,16 +148,18 @@ public class DhnLoginController {
         works.setUserid(userid);
         works.setRelid(rid);
         String realPath = session.getServletContext().getRealPath("static/image");
-        String originalFilename = wornei1.getOriginalFilename();
+        String originalFilename = worimg1.getOriginalFilename();
         String extension = FilenameUtils.getExtension(originalFilename);
         String newName = System.currentTimeMillis() + (RandomUtils.nextInt(10000)) + "_." + extension;
         File file = new File(realPath, newName);
         try {
-            wornei1.transferTo(file);
+            worimg1.transferTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        works.setWornei(newName);
+        works.setWorimg(newName);
+        works.setWordate(new Date());
+        works.setIsverify(0);
         int tijiaozuoye = dhnService.tijiaozuoye(works);
         if (tijiaozuoye > 0) {
             session.setAttribute("msg", "提交成功");

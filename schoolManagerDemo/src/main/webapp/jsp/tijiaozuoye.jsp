@@ -50,15 +50,21 @@
                             <tr>
                                 <th>作业标题</th>
                                 <th>作业内容</th>
-                                <th>提交时间</th>
+                                <th>完成状态</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="text" disabled="disabled" name="wortitle" value="${worktitle}"/></td>
-                                <td><input name="wornei1" type="file"></td>
-                                <td><input type="text" name="wordate"/></td>
+                                <td><input type="text" name="worktitle"/></td>
+                                <td><input name="worimg1" type="file"></td>
+                                <td>
+                                    <select name="wornei" style="display: block">
+                                        <option value="已完成">已完成</option>
+                                        <option value="未完成">未完成</option>
+                                        <option value="有异常">有异常</option>
+                                    </select>
+                                </td>
                                 <td><input type="submit" value="提交"/></td>
                             </tr>
                             </tbody>
