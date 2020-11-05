@@ -1,7 +1,7 @@
 $(function () {
     var aid = $("input[name=aid]").val();
     jiazai()
-    cha();
+    cha()
     b();
     //搜索框查询好友
     $(".chahy").blur(function () {
@@ -200,6 +200,7 @@ function cha() {
 //局部刷新
 function xun() {
     time = setInterval(function getoList() {
+        cha();
     }, 3000);
 }
 

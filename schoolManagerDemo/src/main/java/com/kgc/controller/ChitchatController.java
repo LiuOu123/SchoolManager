@@ -1,5 +1,7 @@
 package com.kgc.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kgc.email.Email;
 import com.kgc.email.HttpClientUtil;
 import com.kgc.pojo.*;
@@ -324,5 +326,20 @@ public class ChitchatController {
     public String lvTui(HttpSession session){
         session.invalidate();
         return "login";
+    }
+
+    /**
+     * 东,查询全部试卷
+     * @return
+     */
+    @RequestMapping("/lvSelectPaper")
+    @ResponseBody
+    public Map<String,Object> lvSelectPaper(Integer pageIndex,Integer pageSize){
+        Map<String,Object> map=new HashMap<>();
+        PageHelper.startPage(pageIndex,pageSize);
+        List<ExamPaper> examPapers = service.lvSelectPaper();
+        PageInfo<ExamPaper> pageInfo=new PageInfo<>(examPapers);
+        map.put("data",pageInfo);
+        return map;
     }
 }
