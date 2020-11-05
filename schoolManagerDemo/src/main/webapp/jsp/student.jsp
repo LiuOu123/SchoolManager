@@ -89,6 +89,7 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
+            <c:if test="${Position.getPid()==1}">
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="学习任务">&#xe6b8;</i>
@@ -135,6 +136,8 @@
                     </li>--%>
                 </ul>
             </li>
+            </c:if>
+            <c:if test="${Position.getPid()==3}">
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="班主任管理">&#xe726;</i>
@@ -148,6 +151,7 @@
                     </li>
                 </ul>
             </li>
+            </c:if>
             <%--<li>--%>
                 <%--<a href="javascript:;">--%>
                     <%--<i class="iconfont left-nav-li" lay-tips="分类管理">&#xe723;</i>--%>
@@ -291,6 +295,7 @@
                     <%--</li>--%>
                 <%--</ul>--%>
             <%--</li>--%>
+            <c:if test="${Position.getPid()==2}">
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="教员管理">&#xe726;</i>
@@ -302,18 +307,24 @@
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>notice 通知控件</cite></a>
                     </li>--%>
-                        <li>
+                     <li>
                             <a onclick="xadmin.add_tab('数据统计','/jsp/ttongji.jsp')">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>数据统计</cite></a>
-                        </li>
+                    </li>
                     <li>
                         <a onclick="xadmin.add_tab('发布作业','/jsp/LoClassUserInfo.jsp')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>发布作业</cite></a>
                     </li>
+                        <li>
+                            <a onclick="xadmin.add_tab('试题中心','/jsp/lvkaoshi.jsp')">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>试题中心</cite></a>
+                        </li>
                 </ul>
             </li>
+                </c:if>
         </ul>
     </div>
 </div>

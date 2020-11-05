@@ -24,6 +24,8 @@ public class LvDongServiceImpl implements LvDongService {
     AccountMapper accountMapper;
     @Resource
     BacklogMapper backlogMapper;
+    @Resource
+    ExamPaperMapper examPaperMapper;
     //添加消息
     @Override
     public int addXiaoXi(XiaoXi xiaoXi) {
@@ -160,6 +162,13 @@ public class LvDongServiceImpl implements LvDongService {
         criteria.andPhoneEqualTo(e);
         criteria.andUtypeEqualTo(1);
         return userinfoMapper.selectByExample(userInfoExample).get(0);
+    }
+
+    @Override
+    public List<ExamPaper> lvSelectPaper() {
+        ExamPaperExample examPaperExample=new ExamPaperExample();
+        examPaperExample.setOrderByClause("create_time desc");
+        return examPaperMapper.selectByExample(examPaperExample);
     }
 
 

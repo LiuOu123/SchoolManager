@@ -19,7 +19,6 @@ public interface LvDongService {
     Account selectUserName(String acc);
     //根据accid查询账号信息
     UserInfo selectUserByAid(Integer id);
-
     //添加好友申请
     int lvAddBacklog(Backlog backlog);
     //查询有没有好友申请
@@ -36,10 +35,11 @@ public interface LvDongService {
     UserInfo lvSelectByUserInfo(Integer aid);
     //根据邮箱获取aid
     UserInfo lvSelectByEamilAid(String e);
-
+    //修改密码
     int lvUpdateAccPwd(Account account);
-
+    //根据手机号获取aid
     UserInfo lvSelectByPhoneAid(String e);
-
+    //查询试卷
+    List<ExamPaper> lvSelectPaper();
 
 }

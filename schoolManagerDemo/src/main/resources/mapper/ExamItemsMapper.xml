@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kgc.mapper.ExamItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.kgc.pojo.ExamItems" >
+    <id column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="epaperid" property="epaperid" jdbcType="INTEGER" />
+    <result column="escore" property="escore" jdbcType="INTEGER" />
+    <result column="etype" property="etype" jdbcType="INTEGER" />
+    <result column="ea" property="ea" jdbcType="VARCHAR" />
+    <result column="eb" property="eb" jdbcType="VARCHAR" />
+    <result column="ec" property="ec" jdbcType="VARCHAR" />
+    <result column="ed" property="ed" jdbcType="VARCHAR" />
+    <result column="ee" property="ee" jdbcType="VARCHAR" />
+    <result column="ef" property="ef" jdbcType="VARCHAR" />
+    <result column="ekeys" property="ekeys" jdbcType="VARCHAR" />
+    <result column="ehints" property="ehints" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    eid, ename, epaperid, escore, etype, ea, eb, ec, ed, ee, ef, ekeys, ehints
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.pojo.ExamItemsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exam_items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_items
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exam_items
+    where eid = #{eid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.kgc.pojo.ExamItemsExample" >
+    delete from exam_items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.kgc.pojo.ExamItems" >
+    insert into exam_items (eid, ename, epaperid, 
+      escore, etype, ea, 
+      eb, ec, ed, ee, 
+      ef, ekeys, ehints)
+    values (#{eid,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR}, #{epaperid,jdbcType=INTEGER}, 
+      #{escore,jdbcType=INTEGER}, #{etype,jdbcType=INTEGER}, #{ea,jdbcType=VARCHAR}, 
+      #{eb,jdbcType=VARCHAR}, #{ec,jdbcType=VARCHAR}, #{ed,jdbcType=VARCHAR}, #{ee,jdbcType=VARCHAR}, 
+      #{ef,jdbcType=VARCHAR}, #{ekeys,jdbcType=VARCHAR}, #{ehints,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kgc.pojo.ExamItems" >
+    insert into exam_items
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="ename != null" >
+        ename,
+      </if>
+      <if test="epaperid != null" >
+        epaperid,
+      </if>
+      <if test="escore != null" >
+        escore,
+      </if>
+      <if test="etype != null" >
+        etype,
+      </if>
+      <if test="ea != null" >
+        ea,
+      </if>
+      <if test="eb != null" >
+        eb,
+      </if>
+      <if test="ec != null" >
+        ec,
+      </if>
+      <if test="ed != null" >
+        ed,
+      </if>
+      <if test="ee != null" >
+        ee,
+      </if>
+      <if test="ef != null" >
+        ef,
+      </if>
+      <if test="ekeys != null" >
+        ekeys,
+      </if>
+      <if test="ehints != null" >
+        ehints,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="epaperid != null" >
+        #{epaperid,jdbcType=INTEGER},
+      </if>
+      <if test="escore != null" >
+        #{escore,jdbcType=INTEGER},
+      </if>
+      <if test="etype != null" >
+        #{etype,jdbcType=INTEGER},
+      </if>
+      <if test="ea != null" >
+        #{ea,jdbcType=VARCHAR},
+      </if>
+      <if test="eb != null" >
+        #{eb,jdbcType=VARCHAR},
+      </if>
+      <if test="ec != null" >
+        #{ec,jdbcType=VARCHAR},
+      </if>
+      <if test="ed != null" >
+        #{ed,jdbcType=VARCHAR},
+      </if>
+      <if test="ee != null" >
+        #{ee,jdbcType=VARCHAR},
+      </if>
+      <if test="ef != null" >
+        #{ef,jdbcType=VARCHAR},
+      </if>
+      <if test="ekeys != null" >
+        #{ekeys,jdbcType=VARCHAR},
+      </if>
+      <if test="ehints != null" >
+        #{ehints,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.kgc.pojo.ExamItemsExample" resultType="java.lang.Integer" >
+    select count(*) from exam_items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exam_items
+    <set >
+      <if test="record.eid != null" >
+        eid = #{record.eid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ename != null" >
+        ename = #{record.ename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.epaperid != null" >
+        epaperid = #{record.epaperid,jdbcType=INTEGER},
+      </if>
+      <if test="record.escore != null" >
+        escore = #{record.escore,jdbcType=INTEGER},
+      </if>
+      <if test="record.etype != null" >
+        etype = #{record.etype,jdbcType=INTEGER},
+      </if>
+      <if test="record.ea != null" >
+        ea = #{record.ea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eb != null" >
+        eb = #{record.eb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ec != null" >
+        ec = #{record.ec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ed != null" >
+        ed = #{record.ed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ee != null" >
+        ee = #{record.ee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ef != null" >
+        ef = #{record.ef,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ekeys != null" >
+        ekeys = #{record.ekeys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ehints != null" >
+        ehints = #{record.ehints,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exam_items
+    set eid = #{record.eid,jdbcType=INTEGER},
+      ename = #{record.ename,jdbcType=VARCHAR},
+      epaperid = #{record.epaperid,jdbcType=INTEGER},
+      escore = #{record.escore,jdbcType=INTEGER},
+      etype = #{record.etype,jdbcType=INTEGER},
+      ea = #{record.ea,jdbcType=VARCHAR},
+      eb = #{record.eb,jdbcType=VARCHAR},
+      ec = #{record.ec,jdbcType=VARCHAR},
+      ed = #{record.ed,jdbcType=VARCHAR},
+      ee = #{record.ee,jdbcType=VARCHAR},
+      ef = #{record.ef,jdbcType=VARCHAR},
+      ekeys = #{record.ekeys,jdbcType=VARCHAR},
+      ehints = #{record.ehints,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kgc.pojo.ExamItems" >
+    update exam_items
+    <set >
+      <if test="ename != null" >
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="epaperid != null" >
+        epaperid = #{epaperid,jdbcType=INTEGER},
+      </if>
+      <if test="escore != null" >
+        escore = #{escore,jdbcType=INTEGER},
+      </if>
+      <if test="etype != null" >
+        etype = #{etype,jdbcType=INTEGER},
+      </if>
+      <if test="ea != null" >
+        ea = #{ea,jdbcType=VARCHAR},
+      </if>
+      <if test="eb != null" >
+        eb = #{eb,jdbcType=VARCHAR},
+      </if>
+      <if test="ec != null" >
+        ec = #{ec,jdbcType=VARCHAR},
+      </if>
+      <if test="ed != null" >
+        ed = #{ed,jdbcType=VARCHAR},
+      </if>
+      <if test="ee != null" >
+        ee = #{ee,jdbcType=VARCHAR},
+      </if>
+      <if test="ef != null" >
+        ef = #{ef,jdbcType=VARCHAR},
+      </if>
+      <if test="ekeys != null" >
+        ekeys = #{ekeys,jdbcType=VARCHAR},
+      </if>
+      <if test="ehints != null" >
+        ehints = #{ehints,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kgc.pojo.ExamItems" >
+    update exam_items
+    set ename = #{ename,jdbcType=VARCHAR},
+      epaperid = #{epaperid,jdbcType=INTEGER},
+      escore = #{escore,jdbcType=INTEGER},
+      etype = #{etype,jdbcType=INTEGER},
+      ea = #{ea,jdbcType=VARCHAR},
+      eb = #{eb,jdbcType=VARCHAR},
+      ec = #{ec,jdbcType=VARCHAR},
+      ed = #{ed,jdbcType=VARCHAR},
+      ee = #{ee,jdbcType=VARCHAR},
+      ef = #{ef,jdbcType=VARCHAR},
+      ekeys = #{ekeys,jdbcType=VARCHAR},
+      ehints = #{ehints,jdbcType=VARCHAR}
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+</mapper>
